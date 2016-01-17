@@ -1,0 +1,238 @@
+
+<!-- vi: set ts=2 :--><!DOCTYPE html(lang='en.png')>
+<head>
+  <meta charset="utf-8"/>
+  <title>Visualising CSP in Go</title>
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+  <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css"/>
+  <link rel="stylesheet" href="css/main.css"/>
+  <link rel="stylesheet" href="css/theme/beige.css"/>
+  <link rel="stylesheet" href="css/custom.css"/>
+  <link rel="stylesheet" href="lib/css/zenburn.css"/>
+  <body>
+    <div class="reveal">
+      <div class="state-background"></div>
+      <div class="slides">
+        <section><br/>
+          <h1>Visualizing Concurrency</h1>
+          <h3>Go concurrency visually explained</h3><br/>
+          <h5>Ivan Danyliuk</h5>
+          <h5>@idanyliuk</h5>
+        </section>
+        <section>
+          <h2>Modern world is concurrent</h2>
+          <ul>
+            <li>Moore&apos;s Law is dead</li>
+            <li>Multi-core CPUs</li>
+            <li>...</li>
+          </ul>
+        </section>
+        <section>
+          <h2>What is concurrency?</h2><a href="https://en.wikipedia.org/wiki/Concurrency_(computer_science)" target="_blank">Concurrency (Wikipedia)</a>
+          <blockquote style="width:90%">In computer science, concurrency ... is a property of systems in which several computations are executing simultaneously, and potentially interacting with each other.</blockquote>
+        </section>
+        <section>
+          <h3>Rob Pike - Concurrency is not parallelism</h3><br/>
+          <div id="ytplayer" data-youtube-url="http://www.youtube.com/v/cN_DpYBzKso?enablejsapi=1&amp;version=3&amp;border=0" class="ytapiplayer"></div>
+        </section>
+        <section>
+          <h2>Concurrency vs parallelism</h2>
+          <ul>
+            <li>Concurrency is a way of structuring programs.</li>
+            <li>Parallelism is simply running things in parallel.</li>
+            <li></li>Concurrent program can run either on single core or multiple cores.
+          </ul>
+        </section>
+        <section>
+          <h2>Concurrency in Go</h2>
+          <ul>
+            <li>Based on Tony Hoare&apos;s CSP&apos;78 paper</li>
+            <li>Channels</li>
+            <li>Goroutines</li>
+            <li>Select</li>
+          </ul>
+        </section>
+        <section>
+          <h3>Hello, world</h3>
+          <pre style="width: 50%; float: left"><code class="golang">package main
+
+func main() {
+	// create new channel of type int
+	ch := make(chan int)
+
+	// start new anonymous goroutine
+	go func() {
+		// send 42 to channel
+		ch <- 42
+	}()
+	// read from channel
+	<-ch
+}
+</code></pre>
+          <div style="width: 50%; float: right" class="fragment grow">
+            <canvas data-sample="hello01" style="display:inline"></canvas>
+          </div>
+        </section>
+        <section>
+          <h3>Ping-pong</h3>
+          <pre style="width: 50%; float: left"><code class="golang">package main
+
+import "time"
+
+func main() {
+	var Ball int
+	table := make(chan int)
+	go player(table)
+	go player(table)
+
+	table <- Ball
+	time.Sleep(1 * time.Second)
+	<-table
+}
+
+func player(table chan int) {
+	for {
+		ball := <-table
+		ball++
+		time.Sleep(100e6)
+		table <- ball
+	}
+}
+</code></pre>
+          <div style="width: 50%; float: right" class="fragment grow">
+            <canvas data-sample="pingpong01" style="display:inline"></canvas>
+          </div>
+        </section>
+                <section>
+                  <h3>Concurrency in Go</h3>
+                  <div>
+                    <canvas data-sample="pingpong01_full" style="display:inline"></canvas>
+                  </div>
+                </section>
+        <section>
+          <h3>Ping-pong #3</h3>
+          <pre><code class="golang">package main
+
+import "time"
+
+func main() {
+	var Ball int
+	table := make(chan int)
+	go player(table)
+	go player(table)
+	go player(table)
+
+	table <- Ball
+	time.Sleep(2 * time.Second)
+	<-table
+}
+
+func player(table chan int) {
+	for {
+		ball := <-table
+		ball++
+		time.Sleep(100e6)
+		table <- ball
+	}
+}
+</code></pre>
+        </section>
+                <section>
+                  <h3>Ping-pong #3</h3>
+                  <div>
+                    <canvas data-sample="pingpong03" style="display:inline"></canvas>
+                  </div>
+                </section>
+        <section>
+          <h3>Ping-pong #100</h3>
+          <pre><code class="golang">package main
+
+import "time"
+
+func main() {
+	var Ball int
+	table := make(chan int)
+	for i := 0; i < 100; i++ {
+		go player(table)
+	}
+
+	table <- Ball
+	time.Sleep(3 * time.Second)
+	<-table
+}
+
+func player(table chan int) {
+	for {
+		ball := <-table
+		ball++
+		time.Sleep(100 * time.Millisecond)
+		table <- ball
+	}
+}
+</code></pre>
+        </section>
+                <section>
+                  <h3>Ping-pong #100</h3>
+                  <div>
+                    <canvas data-sample="pingpong100" style="display:inline"></canvas>
+                  </div>
+                </section>
+      </div>
+      <div class="progress"></div><span></span>
+    </div>
+    <script src="lib/js/head.min.js"></script>
+    <script>
+      head.js(
+      "lib/js/jquery.min.js",
+      "lib/js/jquery.hotkeys.js",
+      "lib/js/underscore.min.js",
+      "lib/js/swfobject.js",
+      "lib/js/dat.gui.js",
+      "lib/js/EventEmitter.js",
+      "lib/js/three.min.js",
+      "js/gothree_helper.js",
+      "lib/js/tween.js",
+      "js/gothree.js",
+      "lib/js/OrbitControls.js",
+      'lib/js/TextGeometry.js',
+      'lib/js/FontUtils.js',
+      'lib/font/helvetiker_regular.typeface.js',
+      "lib/js/three/EffectComposer.js",
+      "lib/js/three/RenderPass.js",
+      "lib/js/three/BloomPass.js",
+      "lib/js/three/ShaderPass.js",
+      "lib/js/three/MaskPass.js",
+      "js/sugar.js",
+      // js files needed for WebGL specific samples (excluding three js)
+      "lib/js/J3DI.js",
+      "lib/js/J3DIMath.js",
+      "lib/js/webgl-utils.js",
+      "lib/js/webgl-debug.js",
+      // App specific js
+      "js/reveal.min.js",
+      "js/stats_bootstrap.js",
+      "js/samples.js",
+      "js/dat.gui.bootstrap.js",
+      function() {
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+      width: 1200,
+      controls: false,
+      progress: false,
+      history: true,
+      transition: 'linear', // default/cube/page/concave/linear(2d)
+      // Optional libraries used to extend on reveal.js
+      dependencies: [
+      { src: 'lib/js/highlight.min.js', async: true, callback: function() { window.hljs.initHighlightingOnLoad(); window.hljs.configure({tabReplace: '    '}); } },
+      { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+      { src: 'lib/js/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: 'lib/js/data-markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: 'js/youtube.js', async: true, condition: function() { return $("#ytplayer").length > 0 } },
+      ]
+      });
+      });
+    </script>
+  </body>
+</head>

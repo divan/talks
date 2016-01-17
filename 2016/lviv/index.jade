@@ -1,0 +1,145 @@
+// vi: set ts=2 :
+doctype html(lang='en.png')
+head
+	meta(charset='utf-8')
+	title Visualising CSP in Go
+	meta(name='apple-mobile-web-app-capable', content='yes')
+	meta(name='apple-mobile-web-app-status-bar-style', content='black-translucent')
+	link(href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic', rel='stylesheet', type='text/css')
+	link(rel='stylesheet', href='css/main.css')
+	link(rel='stylesheet', href='css/theme/beige.css')
+	link(rel='stylesheet', href='css/custom.css')
+	link(rel='stylesheet', href='lib/css/zenburn.css')
+	body
+		div.reveal
+			.state-background
+			.slides
+				section
+					br
+					h1 Visualizing Concurrency
+					h3 Go concurrency visually explained
+					br
+					h5 Ivan Danyliuk
+					h5 @idanyliuk
+				section
+					h2 Modern world is concurrent
+					ul
+						li Moore&apos;s Law is dead
+						li Multi-core CPUs
+						li ...
+				section
+					h2 What is concurrency?
+					a(href='https://en.wikipedia.org/wiki/Concurrency_(computer_science)', target='_blank') Concurrency (Wikipedia)
+					blockquote(style='width:90%')
+						| In computer science, concurrency ... is a property of systems in which several computations are executing simultaneously, and potentially interacting with each other.
+				section
+					h3 Rob Pike - Concurrency is not parallelism
+					br
+					#ytplayer.ytapiplayer(data-youtube-url='http://www.youtube.com/v/cN_DpYBzKso?enablejsapi=1&version=3&border=0')
+				section
+					h2 Concurrency vs parallelism
+					ul
+						li Concurrency is a way of structuring programs.
+						li Parallelism is simply running things in parallel.
+						li
+						| Concurrent program can run either on single core or multiple cores.
+				section
+					h2 Concurrency in Go
+					ul
+						li Based on Tony Hoare&apos;s CSP&apos;78 paper
+						li Channels
+						li Goroutines
+						li Select
+
+				section
+					h3 Hello, world
+					pre(style='width: 50%; float: left')
+						code.golang
+							include ./code/hello01.go
+					div.fragment.grow(style='width: 50%; float: right')
+						canvas(data-sample='hello01', style='display:inline')
+
+				section
+					h3 Ping-pong
+					pre(style='width: 50%; float: left')
+						code.golang
+							include ./code/pingpong01.go
+					div.fragment.grow(style='width: 50%; float: right')
+						canvas(data-sample='pingpong01', style='display:inline')
+
+				mixin slide(title, sample)
+					section
+						h3= title
+						div
+							canvas(data-sample=sample, style='display:inline')
+				+slide("Ping-pond #3", "pingpong01_full")
+
+				section
+					h3 Ping-pong #3
+					pre
+						code.golang
+							include ./code/pingpong03.go
+				+slide("Ping-pong #3", "pingpong03")
+
+				section
+					h3 Ping-pong #100
+					pre
+						code.golang
+							include ./code/pingpong100.go
+				+slide("Ping-pong #100", "pingpong100")
+
+			.progress
+			span
+		script(src='lib/js/head.min.js')
+		script.
+			head.js(
+			"lib/js/jquery.min.js",
+			"lib/js/jquery.hotkeys.js",
+			"lib/js/underscore.min.js",
+			"lib/js/swfobject.js",
+			"lib/js/dat.gui.js",
+			"lib/js/EventEmitter.js",
+			"lib/js/three.min.js",
+			"js/gothree_helper.js",
+			"lib/js/tween.js",
+			"js/gothree.js",
+			"lib/js/OrbitControls.js",
+			'lib/js/TextGeometry.js',
+			'lib/js/FontUtils.js',
+			'lib/font/helvetiker_regular.typeface.js',
+			"lib/js/three/EffectComposer.js",
+			"lib/js/three/RenderPass.js",
+			"lib/js/three/BloomPass.js",
+			"lib/js/three/ShaderPass.js",
+			"lib/js/three/MaskPass.js",
+			"js/sugar.js",
+			// js files needed for WebGL specific samples (excluding three js)
+			"lib/js/J3DI.js",
+			"lib/js/J3DIMath.js",
+			"lib/js/webgl-utils.js",
+			"lib/js/webgl-debug.js",
+			// App specific js
+			"js/reveal.min.js",
+			"js/stats_bootstrap.js",
+			"js/samples.js",
+			"js/dat.gui.bootstrap.js",
+			function() {
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+			width: 1200,
+			controls: false,
+			progress: false,
+			history: true,
+			transition: 'linear', // default/cube/page/concave/linear(2d)
+			// Optional libraries used to extend on reveal.js
+			dependencies: [
+			{ src: 'lib/js/highlight.min.js', async: true, callback: function() { window.hljs.initHighlightingOnLoad(); window.hljs.configure({tabReplace: '    '}); } },
+			{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+			{ src: 'lib/js/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+			{ src: 'lib/js/data-markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+			{ src: 'js/youtube.js', async: true, condition: function() { return $("#ytplayer").length > 0 } },
+			]
+			});
+			});
+
