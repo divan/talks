@@ -112,7 +112,7 @@ var data = [{"t":0,"command":"create goroutine","name":"main"},
 			var params = {
 				width: 900,
 				height: 600,
-				camera: "ortho",
+				camera: "perspective",
 				allCaps: false,
 				speed: 1.6,
 				angle: -15,
