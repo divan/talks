@@ -50,6 +50,13 @@ GoThree.Trace = function() {
 	// misc params from the caller.
 	var _params = {};
 
+	// distance between goroutines.
+	var _distance = 100;
+
+	// global angleShift.
+	var _angleShift = 0;
+	var _autoAngle = false;
+
 	// Reset timing, but keeps data. Aims for restarting animation.
 	this.resetTime = function() {
 		_scene.clear();
@@ -58,6 +65,7 @@ GoThree.Trace = function() {
 		_step = 0;
 		_goroutines = [];
 		_traces = [];
+		_angleShift = 0;
 	};
 
 	// Init w/ scene and new data
@@ -67,6 +75,12 @@ GoThree.Trace = function() {
 		_params = params;
 		if (_params.speed !== undefined) {
 			_speed = _params.speed;
+		}
+		if (_params.distance !== undefined) {
+			_distance = _params.distance;
+		}
+		if (_params.autoAngle !== undefined) {
+			_autoAngle = _params.autoAngle;
 		}
 		this.resetTime();
 		this._updateTimings();
@@ -208,7 +222,7 @@ GoThree.Trace = function() {
 			duration = dur / (1000 * 1000); // nanoseconds -> milliseconds
 		}
 		console.log("Duration: " + duration + " ms")
-		var tween = new TWEEN.Tween(tail).to(target, duration+100*(_speed-1));
+		var tween = new TWEEN.Tween(tail).to(target, duration+_distance*(_speed-1));
 		tween.easing(TWEEN.Easing.Cubic.InOut);
 
 		// create text with value
@@ -308,6 +322,7 @@ GoThree.Trace = function() {
 		return depth
 	}
 
+
 	this._calculatePosition = function(name, parent, y) {
 		var siblings = _goroutines.findAll({parent: parent});
 
@@ -319,10 +334,10 @@ GoThree.Trace = function() {
 			var p = _goroutines.find({name: parent});
 			var parentStart = p.line.geometry.vertices[0];
 
-			var distance = 100/depth;
+			var distance = _distance/depth;
 
 			// calculate parent's angle
-			var initAngle = 0;
+			var initAngle = _angleShift;
 			var grandParent = _goroutines.find({name: p.parent});
 			if (grandParent !== undefined) {
 				var p1 = parentStart;
@@ -337,6 +352,8 @@ GoThree.Trace = function() {
 				singleAngle = _params.angle;
 			};
 			var angle = initAngle + singleAngle * siblings.length;
+			if (_autoAngle) 
+				_angleShift += singleAngle;
 
 			position.x = parentStart.x + Math.cos(angle * Math.PI/180)*distance;
 			position.z = parentStart.z + Math.sin(angle * Math.PI/180)*distance;

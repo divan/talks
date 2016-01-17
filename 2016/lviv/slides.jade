@@ -45,6 +45,20 @@
 			canvas(data-sample='hello01', style='display:inline')
 
 	section
+		h3 Timer
+		pre
+			code.golang
+				include ./code/timer_single.go
+
+	section
+		h3 Recurrent timers
+		pre(style='width: 50%; float: left')
+			code.golang
+				include ./code/timer01.go
+		div.fragment.grow(style='width: 50%; float: right')
+			canvas(data-sample='timer01', style='display:inline')
+
+	section
 		h3 Ping-pong
 		pre(style='width: 50%; float: left')
 			code.golang
@@ -57,7 +71,7 @@
 			h3= title
 			div
 				canvas(data-sample=sample, style='display:inline')
-	+slide("Ping-pond #3", "pingpong01_full")
+	+slide("Ping-pong #3", "pingpong01_full")
 
 	section
 		h3 Ping-pong #3

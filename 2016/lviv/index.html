@@ -75,6 +75,43 @@ func main() {
           </div>
         </section>
         <section>
+          <h3>Timer</h3>
+          <pre><code class="golang">import "time"
+
+ch := time.After(1 * time.Second)
+<-ch
+
+c := time.Tick(100 * time.Millisecond)
+<-c
+</code></pre>
+        </section>
+        <section>
+          <h3>Recurrent timers</h3>
+          <pre style="width: 50%; float: left"><code class="golang">package main
+
+import "time"
+
+func tick(d time.Duration) <-chan int {
+	c := make(chan int)
+	go func() {
+		c <- 1
+		time.Sleep(d)
+	}()
+	return c
+}
+
+func main() {
+	for i := 0; i < 24; i++ {
+		c := tick(1 * time.Second)
+		<-c
+	}
+}
+</code></pre>
+          <div style="width: 50%; float: right" class="fragment grow">
+            <canvas data-sample="timer01" style="display:inline"></canvas>
+          </div>
+        </section>
+        <section>
           <h3>Ping-pong</h3>
           <pre style="width: 50%; float: left"><code class="golang">package main
 
@@ -105,7 +142,7 @@ func player(table chan int) {
           </div>
         </section>
                 <section>
-                  <h3>Ping-pond #3</h3>
+                  <h3>Ping-pong #3</h3>
                   <div>
                     <canvas data-sample="pingpong01_full" style="display:inline"></canvas>
                   </div>
