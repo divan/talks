@@ -105,7 +105,7 @@ func player(table chan int) {
           </div>
         </section>
                 <section>
-                  <h3>Concurrency in Go</h3>
+                  <h3>Ping-pond #3</h3>
                   <div>
                     <canvas data-sample="pingpong01_full" style="display:inline"></canvas>
                   </div>
@@ -176,6 +176,46 @@ func player(table chan int) {
                   <h3>Ping-pong #100</h3>
                   <div>
                     <canvas data-sample="pingpong100" style="display:inline"></canvas>
+                  </div>
+                </section>
+        <section>
+          <h3>Concurrent prime sieve</h3>
+          <pre><code class="golang">package main
+
+import "fmt"
+
+func Generate(ch chan<- int) {
+	for i := 2; ; i++ {
+		ch <- i
+	}
+}
+
+func Filter(ch <-chan int, out chan<- int, prime int) {
+	for {
+		i := <-ch
+		if i%prime != 0 {
+			out <- i
+		}
+	}
+}
+
+func main() {
+	ch := make(chan int)
+	go Generate(ch)
+	for i := 0; i < 10; i++ {
+		prime := <-ch
+		fmt.Println(prime)
+		out := make(chan int)
+		go Filter(ch, out, prime)
+		ch = out
+	}
+}
+</code></pre>
+        </section>
+                <section>
+                  <h3>Concurrent price sieve</h3>
+                  <div>
+                    <canvas data-sample="primesieve" style="display:inline"></canvas>
                   </div>
                 </section>
       </div>

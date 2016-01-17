@@ -60,5 +60,6 @@
     "js/samples/pingpong01_full.js",
     "js/samples/pingpong03.js",
     "js/samples/pingpong100.js",
+    "js/samples/primesieve.js",
     initializeOnLoad);
 })();

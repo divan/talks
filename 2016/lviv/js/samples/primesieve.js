@@ -1,4 +1,6 @@
-data = [{"t":0,"command":"create goroutine","name":"main"},
+(function() {
+
+var data = [{"t":0,"command":"create goroutine","name":"main"},
 {"t":361005,"command":"create goroutine","name":"Generate #17","parent":"main"},
 {"t":105145613,"command":"send to channel","from":"Generate #17","to":"main","ch":"ch","value":2,"duration":426020},
 {"t":106498456,"command":"create goroutine","name":"Filter #33","parent":"main"},
@@ -102,3 +104,24 @@ data = [{"t":0,"command":"create goroutine","name":"main"},
 {"t":3136848662,"command":"send to channel","from":"Filter8 #36","to":"Filter9 #23","ch":"out8","value":31,"duration":53149},
 {"t":3136929156,"command":"send to channel","from":"Filter9 #23","to":"main","ch":"out9","value":31,"duration":40636},
 {"t":3136985876,"command":"stop goroutine","name":"main"}];
+
+	window.samples.primesieve = {
+
+		initialize: function(canvas, options) {
+			var instance = { active: false };
+			var params = {
+				width: 900,
+				height: 600,
+				camera: "ortho",
+				allCaps: false,
+				speed: 1.6,
+				angle: -15,
+				zoom: 1.0,
+				cameraPos: {x: 170, y: 0, z: -170}
+			};
+			initScene(canvas, options, instance, data, params);
+			return instance;
+		}
+	};
+})();
+
