@@ -62,5 +62,6 @@
     "js/samples/pingpong100.js",
     "js/samples/primesieve.js",
     "js/samples/timer01.js",
+    "js/samples/workers01.js",
     initializeOnLoad);
 })();

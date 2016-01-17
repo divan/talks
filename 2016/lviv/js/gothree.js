@@ -332,6 +332,9 @@ GoThree.Trace = function() {
 		var position = {x:0, y:y, z:0};
 		if (parent != undefined) {
 			var p = _goroutines.find({name: parent});
+			console.log(parent, p);
+			if (p === undefined) 
+				return p;
 			var parentStart = p.line.geometry.vertices[0];
 
 			var distance = _distance/depth;
@@ -367,6 +370,7 @@ GoThree.Trace = function() {
 		if (g === undefined) return;
 		if (g.parent !== undefined) {
 			var parent = _goroutines.find({name: g.parent});
+			if (parent === undefined) return;
 			var ggeom = g.line.geometry.vertices[1];
 			var pgeom = parent.line.geometry.vertices[1];
 			var start = new THREE.Vector3(ggeom.x, ggeom.y, ggeom.z);
