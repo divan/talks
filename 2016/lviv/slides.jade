@@ -126,7 +126,10 @@
 
 	section
 		h3 Concurrent prime sieve
-		pre
+		pre(style='width: 43%; float: left; padding: 5px')
 			code.golang
-				include ./code/primesieve.go
+				include ./code/primesieve_part1.go
+		pre(style='width: 55%; float: right; padding: 5px')
+			code.golang
+				include ./code/primesieve_part2.go
 	+slide("Concurrent prime sieve", "primesieve")
