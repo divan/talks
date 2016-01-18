@@ -115,6 +115,16 @@
 	+slide("Workers", "workers01")
 
 	section
+		h3 Server+Worker
+		pre(style='width: 43%; float: left; padding: 5px')
+			code.golang
+				include ./code/server03_part1.go
+		pre(style='width: 55%; float: right; padding: 5px')
+			code.golang
+				include ./code/server03_part2.go
+	+slide("Server+Worker", "server03")
+
+	section
 		h3 Concurrent prime sieve
 		pre
 			code.golang
