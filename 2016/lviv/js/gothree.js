@@ -347,16 +347,17 @@ GoThree.Trace = function() {
 				var p2 = grandParent.line.geometry.vertices[0];
 				var vec = new THREE.Vector3(p1.x-p2.x, 0, p1.z-p2.z);
 				var orig = new THREE.Vector3(1, 0, 0);
-				initAngle = orig.angleTo(vec) * 180/Math.PI;
+				initAngle = initAngle + orig.angleTo(vec) * 180/Math.PI;
 			}
 
 			var singleAngle = 15;
-			if (_params.angle !== undefined) {
+			if (_params.angle !== undefined && depth == 1) {
 				singleAngle = _params.angle;
-			};
+			} else if (_params.angle2 !== undefined && depth == 2) {
+				singleAngle = _params.angle2;
+			}
 			var angle = initAngle + singleAngle * siblings.length;
-			if (_autoAngle) 
-				_angleShift += singleAngle;
+			if (_autoAngle) _angleShift += singleAngle;
 
 			position.x = parentStart.x + Math.cos(angle * Math.PI/180)*distance;
 			position.z = parentStart.z + Math.sin(angle * Math.PI/180)*distance;

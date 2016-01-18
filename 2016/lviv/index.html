@@ -216,6 +216,91 @@ func player(table chan int) {
                   </div>
                 </section>
         <section>
+          <h3>Servers</h3>
+          <pre><code class="golang">package main
+
+import "net"
+
+func handler(c net.Conn) {
+	c.Write([]byte("ok"))
+	c.Close()
+}
+
+func main() {
+	l, err := net.Listen("tcp", ":5000")
+	if err != nil {
+		panic(err)
+	}
+	for {
+		c, err := l.Accept()
+		if err != nil {
+			continue
+		}
+		go handler(c)
+	}
+}
+</code></pre>
+        </section>
+                <section>
+                  <h3>Servers</h3>
+                  <div>
+                    <canvas data-sample="server01" style="display:inline"></canvas>
+                  </div>
+                </section>
+        <section>
+          <h3>Servers</h3>
+          <pre style="width: 43%; float: left; padding: 5px"><code class="golang">package main
+
+import (
+	"fmt"
+	"net"
+	"time"
+)
+
+func main() {
+	l, err := net.Listen("tcp", ":5000")
+	if err != nil {
+		panic(err)
+	}
+
+	ch := make(chan string)
+
+	go logger(ch)
+	go server(l, ch)
+
+	time.Sleep(10 * time.Second)
+}
+</code></pre>
+          <pre style="width: 55%; float: right; padding: 5px"><code class="golang">func handler(c net.Conn, ch chan string) {
+	ch <- c.RemoteAddr().String()
+	c.Write([]byte("ok"))
+	c.Close()
+}
+
+func logger(ch chan string) {
+	for {
+		fmt.Println(<-ch)
+	}
+}
+
+func server(l net.Listener, ch chan string) {
+	for {
+		c, err := l.Accept()
+		if err != nil {
+			continue
+		}
+		go handler(c, ch)
+	}
+}
+</code></pre>
+        </section>
+                <section>
+                  <h3>Servers</h3>
+                  <div>
+                    <canvas data-sample="server02" style="display:inline"></canvas>
+                  </div>
+                </section>
+        <section>
           <h3>Workers</h3>
           <pre style="width: 40%; float: left; padding: 5px"><code class="golang">package main
 
