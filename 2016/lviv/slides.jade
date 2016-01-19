@@ -116,6 +116,16 @@
 	+slide("Workers", "workers01")
 
 	section
+		h3 Workers
+		pre(style='width: 40%; float: left; padding: 5px')
+			code.golang
+				include ./code/workers01_part1.go
+		pre(style='width: 55%; float: right; padding: 5px')
+			code.golang
+				include ./code/workers01_part2.go
+	+slide("Workers", "workers02")
+
+	section
 		h3 Server+Worker
 		pre(style='width: 43%; float: left; padding: 5px')
 			code.golang
@@ -205,3 +215,8 @@
 
 	+slide("That is parallelism", "parallelism01")
 	+slide("That is parallelism", "parallelism02")
+	+slide("And that is concurrency", "primesieve")
+	+slide("That is concurrency", "pingpong100")
+	+slide("That is concurrency", "server02")
+	+slide("That is concurrency", "workers01")
+	+slide("That is concurrency", "workers02")
