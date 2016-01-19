@@ -5,8 +5,8 @@ import "time"
 func tick(d time.Duration) <-chan int {
 	c := make(chan int)
 	go func() {
-		c <- 1
 		time.Sleep(d)
+		c <- 1
 	}()
 	return c
 }

@@ -14,6 +14,10 @@
 			li Multi-core CPUs
 			li ...
 	section
+		h3 Software is not...
+		img(src="images/cpu.gif",width="80%")
+
+	section
 		h2 What is concurrency?
 		a(href='https://en.wikipedia.org/wiki/Concurrency_(computer_science)', target='_blank') Concurrency (Wikipedia)
 		blockquote(style='width:90%')
@@ -25,10 +29,9 @@
 	section
 		h2 Concurrency vs parallelism
 		ul
-			li Concurrency is a way of structuring programs.
 			li Parallelism is simply running things in parallel.
-			li
-			| Concurrent program can run either on single core or multiple cores.
+			li Concurrency is a way of structuring programs.
+			li Concurrent program can run either on single core or multiple cores.
 	section
 		h2 Concurrency in Go
 		ul
@@ -38,7 +41,7 @@
 			li Select
 
 	section
-		h3 Hello, world
+		h3 Hello, concurrent world
 		pre(style='width: 50%; float: left')
 			code.golang
 				include ./code/hello01.go
@@ -72,7 +75,7 @@
 			h3= title
 			div
 				canvas(data-sample=sample, style='display:inline')
-	+slide("Ping-pong #3", "pingpong01_full")
+	+slide("Ping-pong", "pingpong01_full")
 
 	section
 		h3 Ping-pong #3
@@ -220,3 +223,16 @@
 	+slide("That is concurrency", "server02")
 	+slide("That is concurrency", "workers01")
 	+slide("That is concurrency", "workers02")
+	section
+		h3 Links
+		ul
+			li http://talks.golang.org/2012/concurrency.slide
+			li http://talks.golang.org/2012/waza.slide
+			li https://talks.golang.org/2013/advconc.slide
+	section
+		br
+		br
+		br
+		br
+		br
+		h1 Thank you

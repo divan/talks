@@ -29,6 +29,9 @@
           </ul>
         </section>
         <section>
+          <h3>Software is not...</h3><img src="images/cpu.gif" width="80%"/>
+        </section>
+        <section>
           <h2>What is concurrency?</h2><a href="https://en.wikipedia.org/wiki/Concurrency_(computer_science)" target="_blank">Concurrency (Wikipedia)</a>
           <blockquote style="width:90%">In computer science, concurrency ... is a property of systems in which several computations are executing simultaneously, and potentially interacting with each other.</blockquote>
         </section>
@@ -39,9 +42,9 @@
         <section>
           <h2>Concurrency vs parallelism</h2>
           <ul>
-            <li>Concurrency is a way of structuring programs.</li>
             <li>Parallelism is simply running things in parallel.</li>
-            <li></li>Concurrent program can run either on single core or multiple cores.
+            <li>Concurrency is a way of structuring programs.</li>
+            <li>Concurrent program can run either on single core or multiple cores.</li>
           </ul>
         </section>
         <section>
@@ -54,7 +57,7 @@
           </ul>
         </section>
         <section>
-          <h3>Hello, world</h3>
+          <h3>Hello, concurrent world</h3>
           <pre style="width: 50%; float: left"><code class="golang">package main
 
 func main() {
@@ -76,13 +79,23 @@ func main() {
         </section>
         <section>
           <h3>Timer</h3>
-          <pre><code class="golang">import "time"
+          <pre><code class="golang">package main
 
-ch := time.After(1 * time.Second)
-<-ch
+import "time"
 
-c := time.Tick(100 * time.Millisecond)
-<-c
+func main() {
+	ch := time.Tick(100 * time.Millisecond)
+	<-ch
+
+	ch = time.After(1 * time.Second)
+	<-ch
+
+	i := 200 * time.Millisecond
+	ch = time.AfterFunc(i, func() {
+		println("Ran after 1 sec")
+	})
+	<-ch
+}
 </code></pre>
         </section>
         <section>
@@ -94,8 +107,8 @@ import "time"
 func tick(d time.Duration) <-chan int {
 	c := make(chan int)
 	go func() {
-		c <- 1
 		time.Sleep(d)
+		c <- 1
 	}()
 	return c
 }
@@ -132,7 +145,7 @@ func player(table chan int) {
 	for {
 		ball := <-table
 		ball++
-		time.Sleep(100e6)
+		time.Sleep(100 * time.Millisecond)
 		table <- ball
 	}
 }
@@ -142,7 +155,7 @@ func player(table chan int) {
           </div>
         </section>
                 <section>
-                  <h3>Ping-pong #3</h3>
+                  <h3>Ping-pong</h3>
                   <div>
                     <canvas data-sample="pingpong01_full" style="display:inline"></canvas>
                   </div>
@@ -704,6 +717,17 @@ func _encode(v _cmd) {
                     <canvas data-sample="workers02" style="display:inline"></canvas>
                   </div>
                 </section>
+        <section>
+          <h3>Links</h3>
+          <ul>
+            <li>http://talks.golang.org/2012/concurrency.slide</li>
+            <li>http://talks.golang.org/2012/waza.slide</li>
+            <li>https://talks.golang.org/2013/advconc.slide</li>
+          </ul>
+        </section>
+        <section><br/><br/><br/><br/><br/>
+          <h1>Thank you</h1>
+        </section>
       </div>
       <div class="progress"></div><span></span>
     </div>

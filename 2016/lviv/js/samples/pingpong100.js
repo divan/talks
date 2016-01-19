@@ -238,11 +238,11 @@ var data = [{"t":0,"command":"create goroutine","name":"main"},
 		initialize: function(canvas, options) {
 			var instance = { active: false };
 			var params = {
-				width: 900,
-				height: 600,
+				width: 1200,
+				height: 700,
 				camera: "perspective",
 				allCaps: false,
-				speed: 1.2,
+				speed: 1.4,
 				angle: 5,
 				zoom: 1.0,
 				cameraPos: {x: 120, y: 60, z: 120}
