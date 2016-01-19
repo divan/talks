@@ -149,3 +149,29 @@
 
 	+slide("GOMAXPROCS = 1", "gomaxprocs1")
 	+slide("GOMAXPROCS = 24", "gomaxprocs24")
+
+	section
+		h3 Go Concurrency Tracer
+		ul
+			li Modify source AST
+			li Run and analyze trace
+			li Render w/ WebGL via Three.js
+
+	section
+		h3 Go Concurrency Tracer
+		h5 It turns this:
+		pre
+			code.golang
+				include ./code/hello01_clean.go
+	section
+		h3 Go Concurrency Tracer
+		h5 Into this:
+		pre
+			code.golang
+				include ./code/hello01_modified.go
+	section
+		h3 Go Concurrency Tracer
+		h5 Next, analyze raw trace:
+		pre
+			code.js
+				include ./code/data.js
