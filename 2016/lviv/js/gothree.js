@@ -341,6 +341,9 @@ GoThree.Trace = function() {
 			var parentStart = p.line.geometry.vertices[0];
 
 			var distance = _distance/depth;
+			if (depth > 1 && _params.distance2 != undefined) {
+				distance = _params.distance2;
+			}
 
 			// calculate parent's angle
 			var initAngle = _angleShift;

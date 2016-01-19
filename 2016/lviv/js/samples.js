@@ -69,5 +69,7 @@
     "js/samples/gomaxprocs1.js",
     "js/samples/gomaxprocs24.js",
     "js/samples/floodfill.js",
+    "js/samples/parallelism01.js",
+    "js/samples/parallelism02.js",
     initializeOnLoad);
 })();
