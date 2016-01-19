@@ -82,6 +82,9 @@ GoThree.Trace = function() {
 		if (_params.autoAngle !== undefined) {
 			_autoAngle = _params.autoAngle;
 		}
+		if (_params.totalTime !== undefined) {
+			_total_time = _params.totalTime;
+		}
 		this.resetTime();
 		this._updateTimings();
 	};
