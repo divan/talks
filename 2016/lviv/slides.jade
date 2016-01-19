@@ -134,3 +134,18 @@
 			code.golang
 				include ./code/primesieve_part2.go
 	+slide("Concurrent prime sieve", "primesieve")
+
+	section
+		h3 GOMAXPROCS
+		img(src="images/gomaxprocs.png")
+	section
+		h3 GOMAXPROCS
+		pre(style='width: 43%; float: left; padding: 5px')
+			code.golang
+				include ./code/gomaxprocs_part1.go
+		pre(style='width: 55%; float: right; padding: 5px')
+			code.golang
+				include ./code/gomaxprocs_part2.go
+
+	+slide("GOMAXPROCS = 1", "gomaxprocs1")
+	+slide("GOMAXPROCS = 24", "gomaxprocs24")

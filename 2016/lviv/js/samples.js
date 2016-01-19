@@ -66,5 +66,7 @@
     "js/samples/server02.js",
     "js/samples/workers01.js",
     "js/samples/server03.js",
+    "js/samples/gomaxprocs1.js",
+    "js/samples/gomaxprocs24.js",
     initializeOnLoad);
 })();
