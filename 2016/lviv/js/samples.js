@@ -68,5 +68,6 @@
     "js/samples/server03.js",
     "js/samples/gomaxprocs1.js",
     "js/samples/gomaxprocs24.js",
+    "js/samples/floodfill.js",
     initializeOnLoad);
 })();
