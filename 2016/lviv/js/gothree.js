@@ -53,6 +53,9 @@ GoThree.Trace = function() {
 	// distance between goroutines.
 	var _distance = 100;
 
+	// distanceShift on each goroutine creation.
+	var _distanceShift = 0;
+
 	// global angleShift.
 	var _angleShift = 0;
 	var _autoAngle = false;
@@ -66,6 +69,7 @@ GoThree.Trace = function() {
 		_goroutines = [];
 		_traces = [];
 		_angleShift = 0;
+		_distanceShift = 0;
 	};
 
 	// Init w/ scene and new data
@@ -109,6 +113,9 @@ GoThree.Trace = function() {
 			switch (cmd.command) {
 				case 'create goroutine':
 					var pos = this._calculatePosition(cmd.name, cmd.parent, -_t);
+					if (pos === undefined) {
+						pos = {x: 0, y: 0, z: 0};
+					}
 					this._cmd_create_goroutine(cmd.name, cmd.parent, pos);
 				break;
 				case 'create channel':
@@ -166,14 +173,16 @@ GoThree.Trace = function() {
 		// create link with parent line
 		if (parent != undefined) {
 			var p = _goroutines.find({name: parent});
-			var pgeom = p.line.geometry.vertices[0];
-			var lstart = new THREE.Vector3(pgeom.x, y, pgeom.z);
-			var lend = new THREE.Vector3( x, y, z );
-			var lgeom = new THREE.Geometry();
-			lgeom.vertices.push( lstart, lend );
-			var mat = new THREE.LineBasicMaterial( { color: 0x0000ff, linewidth: 0.5, } );
-			lline = new THREE.Line( lgeom, mat );
-			_scene.add( lline );
+			if (p !== undefined) {
+				var pgeom = p.line.geometry.vertices[0];
+				var lstart = new THREE.Vector3(pgeom.x, y, pgeom.z);
+				var lend = new THREE.Vector3( x, y, z );
+				var lgeom = new THREE.Geometry();
+				lgeom.vertices.push( lstart, lend );
+				var mat = new THREE.LineBasicMaterial( { color: 0x0000ff, linewidth: 0.5, } );
+				lline = new THREE.Line( lgeom, mat );
+				_scene.add( lline );
+			}
 		}
 
 		// create cap text
@@ -198,8 +207,12 @@ GoThree.Trace = function() {
 	this._cmd_send_to_channel = function(ch, from, to, value, dur) {
 		var s = _goroutines.find({name: from});
 		var e = _goroutines.find({name: to});
+		if (s === undefined) {
+			console.log("ERR: end of line is undefined for "+from);
+			return;
+		}
 		if (e === undefined) {
-			console.log("ERR: end of line is undefined");
+			console.log("ERR: end of line is undefined for "+to);
 			return;
 		}
 		var start = s.line.geometry.vertices[1];
@@ -343,6 +356,10 @@ GoThree.Trace = function() {
 			var distance = _distance/depth;
 			if (depth > 1 && _params.distance2 != undefined) {
 				distance = _params.distance2;
+			}
+			if (_params.autoGrow == true) {
+				distance += _distanceShift;
+				_distanceShift += 0.2;
 			}
 
 			// calculate parent's angle
