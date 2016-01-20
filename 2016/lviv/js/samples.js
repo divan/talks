@@ -72,5 +72,6 @@
     "js/samples/floodfill.js",
     "js/samples/parallelism01.js",
     "js/samples/parallelism02.js",
+    "js/samples/leakage.js",
     initializeOnLoad);
 })();
