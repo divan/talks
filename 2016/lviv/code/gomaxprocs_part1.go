@@ -1,11 +1,3 @@
-package main
-
-import (
-	"fmt"
-	"runtime"
-	"time"
-)
-
 const workers = 24
 
 func pool(in, out chan int) {

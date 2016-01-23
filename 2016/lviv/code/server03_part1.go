@@ -1,8 +1,3 @@
-package main
-
-import "net"
-import "time"
-
 func handler(c net.Conn, ch chan string) {
 	ch <- c.RemoteAddr().String()
 	time.Sleep(100 * time.Millisecond)

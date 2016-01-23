@@ -1,10 +1,3 @@
-package main
-
-import (
-	"sync"
-	"time"
-)
-
 const (
 	WORKERS    = 5
 	SUBWORKERS = 3

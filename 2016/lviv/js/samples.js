@@ -73,5 +73,6 @@
     "js/samples/parallelism01.js",
     "js/samples/parallelism02.js",
     "js/samples/leakage.js",
+    "js/samples/fanin.js",
     initializeOnLoad);
 })();

@@ -1,7 +1,3 @@
-package main
-
-import "time"
-
 func main() {
 	var Ball int
 	table := make(chan int)

@@ -1,11 +1,3 @@
-package main
-
-import (
-	"fmt"
-	"sync"
-	"time"
-)
-
 func worker(tasks <-chan int, wg *sync.WaitGroup) {
 	defer wg.Done()
 	for {

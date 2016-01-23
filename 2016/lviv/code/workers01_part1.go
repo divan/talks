@@ -1,9 +1,3 @@
-package main
-
-import "fmt"
-import "sync"
-import "time"
-
 func main() {
 	var wg sync.WaitGroup
 	wg.Add(36)
