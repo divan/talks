@@ -24,12 +24,6 @@ blockquote.medium {
   line-height: 22px;
 }
 
-pre.code {
-  width: 100%;
-  font-size: 15px;
-  line-height:18px;
-}
-
 .supersmall {
   font-size: 9px !important;
   line-height:9px !important;

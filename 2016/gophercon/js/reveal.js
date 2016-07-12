@@ -335,17 +335,17 @@ var Reveal = (function(){
 
 		switch( event.keyCode ) {
 			// p, page up
-			case 80: case 33: navigatePrev(); triggered = true; break; 
+			case 33: navigatePrev(); triggered = true; break; 
 			// n, page down
-			case 78: case 34: navigateNext(); triggered = true; break;
+			case 34: navigateNext(); triggered = true; break;
 			// h, left
-			case 72: case 37: navigateLeft(); triggered = true; break;
+			case 37: navigateLeft(); triggered = true; break;
 			// l, right
-			case 76: case 39: navigateRight(); triggered = true; break;
+			case 39: navigateRight(); triggered = true; break;
 			// k, up
-			case 75: case 38: navigateUp(); triggered = true; break;
+			case 38: navigateUp(); triggered = true; break;
 			// j, down
-			case 74: case 40: navigateDown(); triggered = true; break;
+			case 40: navigateDown(); triggered = true; break;
 			// home
 			case 36: navigateTo( 0 ); triggered = true; break;
 			// end

@@ -6,7 +6,7 @@ func main() {
 	go player(table)
 
 	table <- Ball
-	time.Sleep(2 * time.Second)
+	time.Sleep(1 * time.Second)
 	<-table
 }
 
@@ -14,7 +14,7 @@ func player(table chan int) {
 	for {
 		ball := <-table
 		ball++
-		time.Sleep(100e6)
+		time.Sleep(100 * time.Millisecond)
 		table <- ball
 	}
 }

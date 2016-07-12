@@ -1,6 +1,10 @@
 function initScene(canvas, options, instance, data, params) {
 	var width = window.innerWidth;
 	var height = window.innerHeight;
+	var autoRotate = false;
+	if (params.autoRotate !== undefined) {
+		autoRotate = params.autoRotate;
+	}
 
 	var scene = new THREE.Scene();
 
@@ -30,8 +34,9 @@ function initScene(canvas, options, instance, data, params) {
 	renderer.setSize( width, height );
 
 	var orbit = new THREE.OrbitControls( camera, renderer.domElement );
+	orbit.autoRotate = autoRotate;
 
-	trace = new GoThree.Trace();
+	var trace = new GoThree.Trace();
 	trace.init(scene, data, params, 1);
 
 	orbit.addEventListener('change', function() {
@@ -41,7 +46,7 @@ function initScene(canvas, options, instance, data, params) {
 	document.addEventListener("keydown", function(event) {keydown(event)}, false);
 
 	function animate() {
-		if (orbit.autoRotate) {
+		if (autoRotate) {
 			orbit.update();
 		};
 		trace.animate();
@@ -57,12 +62,13 @@ function initScene(canvas, options, instance, data, params) {
 	animate();
 
 	function toggleAutoRotate() {
-		orbit.autoRotate = !orbit.autoRotate;
+		autoRotate = !autoRotate;
+		orbit.autoRotate = autoRotate;
 	}
 
 	function keydown(event) {
 		switch (event.which) {
-			case 81: // 'Q' - (Un)Pause autoRotate
+			case 80: // 'P' - (Un)Pause autoRotate
 				toggleAutoRotate();
 				break;
 			case 82: // 'R' - Reset

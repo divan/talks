@@ -1,7 +1,3 @@
-package main
-
-import "time"
-
 func tick(d time.Duration) <-chan int {
 	c := make(chan int)
 	go func() {
@@ -13,7 +9,7 @@ func tick(d time.Duration) <-chan int {
 
 func main() {
 	for i := 0; i < 24; i++ {
-		c := tick(1 * time.Second)
+		c := tick(100 * time.Millisecond)
 		<-c
 	}
 }

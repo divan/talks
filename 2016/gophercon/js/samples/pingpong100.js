@@ -1,249 +1,5273 @@
 (function() {
 
-var data = [{"t":0,"command":"create goroutine","name":"main"},
-{"t":416068,"command":"create goroutine","name":"player #18","parent":"main"},
-{"t":420848,"command":"create goroutine","name":"player #21","parent":"main"},
-{"t":518140,"command":"create goroutine","name":"player #30","parent":"main"},
-{"t":527057,"command":"create goroutine","name":"player #19","parent":"main"},
-{"t":560607,"command":"create goroutine","name":"player #20","parent":"main"},
-{"t":593721,"command":"create goroutine","name":"player #43","parent":"main"},
-{"t":598157,"command":"create goroutine","name":"player #17","parent":"main"},
-{"t":623327,"command":"create goroutine","name":"player #31","parent":"main"},
-{"t":626528,"command":"create goroutine","name":"player #25","parent":"main"},
-{"t":652883,"command":"create goroutine","name":"player #22","parent":"main"},
-{"t":652888,"command":"create goroutine","name":"player #32","parent":"main"},
-{"t":683628,"command":"create goroutine","name":"player #33","parent":"main"},
-{"t":714451,"command":"create goroutine","name":"player #34","parent":"main"},
-{"t":1107728,"command":"create goroutine","name":"player #23","parent":"main"},
-{"t":1116297,"command":"create goroutine","name":"player #35","parent":"main"},
-{"t":1141839,"command":"create goroutine","name":"player #26","parent":"main"},
-{"t":1144257,"command":"create goroutine","name":"player #24","parent":"main"},
-{"t":1153361,"command":"create goroutine","name":"player #36","parent":"main"},
-{"t":1174737,"command":"create goroutine","name":"player #27","parent":"main"},
-{"t":1175389,"command":"create goroutine","name":"player #39","parent":"main"},
-{"t":1181867,"command":"create goroutine","name":"player #40","parent":"main"},
-{"t":1205799,"command":"create goroutine","name":"player #28","parent":"main"},
-{"t":1211127,"command":"create goroutine","name":"player #41","parent":"main"},
-{"t":1218053,"command":"create goroutine","name":"player #37","parent":"main"},
-{"t":1252077,"command":"send to channel","from":"main","to":"player #21","ch":"table","value":0,"duration":667520},
-{"t":1296338,"command":"create goroutine","name":"player #42","parent":"main"},
-{"t":1313147,"command":"create goroutine","name":"player #38","parent":"main"},
-{"t":1334518,"command":"create goroutine","name":"player #80","parent":"main"},
-{"t":1346813,"command":"create goroutine","name":"player #99","parent":"main"},
-{"t":1348501,"command":"create goroutine","name":"player #29","parent":"main"},
-{"t":1364110,"command":"create goroutine","name":"player #44","parent":"main"},
-{"t":1364170,"command":"create goroutine","name":"player #100","parent":"main"},
-{"t":1375693,"command":"create goroutine","name":"player #81","parent":"main"},
-{"t":1380339,"command":"create goroutine","name":"player #90","parent":"main"},
-{"t":1392017,"command":"create goroutine","name":"player #45","parent":"main"},
-{"t":1394439,"command":"create goroutine","name":"player #101","parent":"main"},
-{"t":1401540,"command":"create goroutine","name":"player #91","parent":"main"},
-{"t":1407420,"command":"create goroutine","name":"player #82","parent":"main"},
-{"t":1422887,"command":"create goroutine","name":"player #102","parent":"main"},
-{"t":1435311,"command":"create goroutine","name":"player #83","parent":"main"},
-{"t":1445623,"command":"create goroutine","name":"player #46","parent":"main"},
-{"t":1451138,"command":"create goroutine","name":"player #103","parent":"main"},
-{"t":1463441,"command":"create goroutine","name":"player #84","parent":"main"},
-{"t":1473288,"command":"create goroutine","name":"player #47","parent":"main"},
-{"t":1505080,"command":"create goroutine","name":"player #48","parent":"main"},
-{"t":1508580,"command":"create goroutine","name":"player #85","parent":"main"},
-{"t":1511821,"command":"create goroutine","name":"player #104","parent":"main"},
-{"t":1520988,"command":"create goroutine","name":"player #92","parent":"main"},
-{"t":1542899,"command":"create goroutine","name":"player #49","parent":"main"},
-{"t":1543707,"command":"create goroutine","name":"player #105","parent":"main"},
-{"t":1551861,"command":"create goroutine","name":"player #93","parent":"main"},
-{"t":1579259,"command":"create goroutine","name":"player #94","parent":"main"},
-{"t":1579263,"command":"create goroutine","name":"player #106","parent":"main"},
-{"t":1591680,"command":"create goroutine","name":"player #86","parent":"main"},
-{"t":1611890,"command":"create goroutine","name":"player #95","parent":"main"},
-{"t":1616218,"command":"create goroutine","name":"player #50","parent":"main"},
-{"t":1641649,"command":"create goroutine","name":"player #107","parent":"main"},
-{"t":1642353,"command":"create goroutine","name":"player #96","parent":"main"},
-{"t":1647589,"command":"create goroutine","name":"player #51","parent":"main"},
-{"t":1647653,"command":"create goroutine","name":"player #87","parent":"main"},
-{"t":1673570,"command":"create goroutine","name":"player #97","parent":"main"},
-{"t":1690949,"command":"create goroutine","name":"player #52","parent":"main"},
-{"t":1709531,"command":"create goroutine","name":"player #88","parent":"main"},
-{"t":1711779,"command":"create goroutine","name":"player #108","parent":"main"},
-{"t":1717520,"command":"create goroutine","name":"player #98","parent":"main"},
-{"t":1720409,"command":"create goroutine","name":"player #53","parent":"main"},
-{"t":1748983,"command":"create goroutine","name":"player #66","parent":"main"},
-{"t":1753603,"command":"create goroutine","name":"player #89","parent":"main"},
-{"t":1765138,"command":"create goroutine","name":"player #109","parent":"main"},
-{"t":1778080,"command":"create goroutine","name":"player #67","parent":"main"},
-{"t":1780953,"command":"create goroutine","name":"player #54","parent":"main"},
-{"t":1786767,"command":"create goroutine","name":"player #113","parent":"main"},
-{"t":1797078,"command":"create goroutine","name":"player #114","parent":"main"},
-{"t":1811458,"command":"create goroutine","name":"player #68","parent":"main"},
-{"t":1812958,"command":"create goroutine","name":"player #55","parent":"main"},
-{"t":1814770,"command":"create goroutine","name":"player #110","parent":"main"},
-{"t":1822668,"command":"create goroutine","name":"player #115","parent":"main"},
-{"t":1841057,"command":"create goroutine","name":"player #56","parent":"main"},
-{"t":1844980,"command":"create goroutine","name":"player #69","parent":"main"},
-{"t":1873910,"command":"create goroutine","name":"player #70","parent":"main"},
-{"t":1880581,"command":"create goroutine","name":"player #116","parent":"main"},
-{"t":1888123,"command":"create goroutine","name":"player #57","parent":"main"},
-{"t":1961223,"command":"create goroutine","name":"player #71","parent":"main"},
-{"t":1975208,"command":"create goroutine","name":"player #111","parent":"main"},
-{"t":1975987,"command":"create goroutine","name":"player #58","parent":"main"},
-{"t":1976407,"command":"create goroutine","name":"player #112","parent":"main"},
-{"t":1993437,"command":"create goroutine","name":"player #72","parent":"main"},
-{"t":2005998,"command":"create goroutine","name":"player #59","parent":"main"},
-{"t":2022537,"command":"create goroutine","name":"player #73","parent":"main"},
-{"t":2034978,"command":"create goroutine","name":"player #63","parent":"main"},
-{"t":2038001,"command":"create goroutine","name":"player #62","parent":"main"},
-{"t":2050743,"command":"create goroutine","name":"player #77","parent":"main"},
-{"t":2062558,"command":"create goroutine","name":"player #64","parent":"main"},
-{"t":2068228,"command":"create goroutine","name":"player #60","parent":"main"},
-{"t":2069467,"command":"create goroutine","name":"player #76","parent":"main"},
-{"t":2101091,"command":"create goroutine","name":"player #74","parent":"main"},
-{"t":2107627,"command":"create goroutine","name":"player #78","parent":"main"},
-{"t":2108297,"command":"create goroutine","name":"player #65","parent":"main"},
-{"t":2132890,"command":"create goroutine","name":"player #75","parent":"main"},
-{"t":2136101,"command":"create goroutine","name":"player #79","parent":"main"},
-{"t":2145571,"command":"create goroutine","name":"player #61","parent":"main"},
-{"t":102464853,"command":"send to channel","from":"player #21","to":"player #19","ch":"table","value":1,"duration":105320},
-{"t":203422377,"command":"send to channel","from":"player #19","to":"player #20","ch":"table","value":2,"duration":97413},
-{"t":304740558,"command":"send to channel","from":"player #20","to":"player #18","ch":"table","value":3,"duration":162464},
-{"t":406203498,"command":"send to channel","from":"player #18","to":"player #43","ch":"table","value":4,"duration":178520},
-{"t":507141482,"command":"send to channel","from":"player #43","to":"player #17","ch":"table","value":5,"duration":91858},
-{"t":608625987,"command":"send to channel","from":"player #17","to":"player #31","ch":"table","value":6,"duration":141962},
-{"t":709942912,"command":"send to channel","from":"player #31","to":"player #25","ch":"table","value":7,"duration":145397},
-{"t":811383458,"command":"send to channel","from":"player #25","to":"player #32","ch":"table","value":8,"duration":247624},
-{"t":912229416,"command":"send to channel","from":"player #32","to":"player #22","ch":"table","value":9,"duration":98426},
-{"t":1013605232,"command":"send to channel","from":"player #22","to":"player #33","ch":"table","value":10,"duration":189620},
-{"t":1115083552,"command":"send to channel","from":"player #33","to":"player #34","ch":"table","value":11,"duration":211800},
-{"t":1215619072,"command":"send to channel","from":"player #34","to":"player #30","ch":"table","value":12,"duration":91900},
-{"t":1316992478,"command":"send to channel","from":"player #30","to":"player #23","ch":"table","value":13,"duration":201428},
-{"t":1418519662,"command":"send to channel","from":"player #23","to":"player #35","ch":"table","value":14,"duration":252960},
-{"t":1519042303,"command":"send to channel","from":"player #35","to":"player #26","ch":"table","value":15,"duration":80607},
-{"t":1619768239,"command":"send to channel","from":"player #26","to":"player #24","ch":"table","value":16,"duration":129597},
-{"t":1721131796,"command":"send to channel","from":"player #24","to":"player #36","ch":"table","value":17,"duration":105283},
-{"t":1822504209,"command":"send to channel","from":"player #36","to":"player #27","ch":"table","value":18,"duration":122147},
-{"t":1923909722,"command":"send to channel","from":"player #27","to":"player #40","ch":"table","value":19,"duration":208014},
-{"t":2025248512,"command":"send to channel","from":"player #40","to":"player #39","ch":"table","value":20,"duration":108197},
-{"t":2126654999,"command":"send to channel","from":"player #39","to":"player #28","ch":"table","value":21,"duration":78773},
-{"t":2227081596,"command":"send to channel","from":"player #28","to":"player #41","ch":"table","value":22,"duration":129283},
-{"t":2327625273,"command":"send to channel","from":"player #41","to":"player #37","ch":"table","value":23,"duration":82390},
-{"t":2428938641,"command":"send to channel","from":"player #37","to":"player #42","ch":"table","value":24,"duration":72990},
-{"t":2529421282,"command":"send to channel","from":"player #42","to":"player #38","ch":"table","value":25,"duration":218475},
-{"t":2629884242,"command":"send to channel","from":"player #38","to":"player #80","ch":"table","value":26,"duration":91117},
-{"t":2731255252,"command":"send to channel","from":"player #80","to":"player #99","ch":"table","value":27,"duration":179995},
-{"t":2832762192,"command":"send to channel","from":"player #99","to":"player #29","ch":"table","value":28,"duration":105100},
-{"t":2934104929,"command":"send to channel","from":"player #29","to":"player #44","ch":"table","value":29,"duration":104787},
-{"t":3035276646,"command":"send to channel","from":"player #44","to":"player #100","ch":"table","value":30,"duration":104816},
-{"t":3136585206,"command":"send to channel","from":"player #100","to":"player #81","ch":"table","value":31,"duration":101740},
-{"t":3237876842,"command":"send to channel","from":"player #81","to":"player #90","ch":"table","value":32,"duration":211900},
-{"t":3339265932,"command":"send to channel","from":"player #90","to":"player #45","ch":"table","value":33,"duration":126154},
-{"t":3440577097,"command":"send to channel","from":"player #45","to":"player #101","ch":"table","value":34,"duration":187425},
-{"t":3541994637,"command":"send to channel","from":"player #101","to":"player #91","ch":"table","value":35,"duration":172525},
-{"t":3643379482,"command":"send to channel","from":"player #91","to":"player #82","ch":"table","value":36,"duration":109994},
-{"t":3744339662,"command":"send to channel","from":"player #82","to":"player #102","ch":"table","value":37,"duration":98190},
-{"t":3845624547,"command":"send to channel","from":"player #102","to":"player #83","ch":"table","value":38,"duration":260750},
-{"t":3947100737,"command":"send to channel","from":"player #83","to":"player #46","ch":"table","value":39,"duration":158110},
-{"t":4047708229,"command":"send to channel","from":"player #46","to":"player #103","ch":"table","value":40,"duration":102647},
-{"t":4148996627,"command":"send to channel","from":"player #103","to":"player #47","ch":"table","value":41,"duration":158350},
-{"t":4250439657,"command":"send to channel","from":"player #47","to":"player #84","ch":"table","value":42,"duration":156459},
-{"t":4351776069,"command":"send to channel","from":"player #84","to":"player #48","ch":"table","value":43,"duration":116150},
-{"t":4452580462,"command":"send to channel","from":"player #48","to":"player #85","ch":"table","value":44,"duration":210284},
-{"t":4554105791,"command":"send to channel","from":"player #85","to":"player #104","ch":"table","value":45,"duration":147550},
-{"t":4655507181,"command":"send to channel","from":"player #104","to":"player #92","ch":"table","value":46,"duration":161438},
-{"t":4756912059,"command":"send to channel","from":"player #92","to":"player #105","ch":"table","value":47,"duration":93781},
-{"t":4857951877,"command":"send to channel","from":"player #105","to":"player #49","ch":"table","value":48,"duration":189354},
-{"t":4959430227,"command":"send to channel","from":"player #49","to":"player #93","ch":"table","value":49,"duration":210594},
-{"t":5060842567,"command":"send to channel","from":"player #93","to":"player #94","ch":"table","value":50,"duration":211358},
-{"t":5162199455,"command":"send to channel","from":"player #94","to":"player #86","ch":"table","value":51,"duration":97236},
-{"t":5263548821,"command":"send to channel","from":"player #86","to":"player #106","ch":"table","value":52,"duration":177264},
-{"t":5364976001,"command":"send to channel","from":"player #106","to":"player #95","ch":"table","value":53,"duration":160457},
-{"t":5465875608,"command":"send to channel","from":"player #95","to":"player #50","ch":"table","value":54,"duration":98100},
-{"t":5567090698,"command":"send to channel","from":"player #50","to":"player #96","ch":"table","value":55,"duration":82777},
-{"t":5668449711,"command":"send to channel","from":"player #96","to":"player #87","ch":"table","value":56,"duration":220880},
-{"t":5769950267,"command":"send to channel","from":"player #87","to":"player #51","ch":"table","value":57,"duration":158891},
-{"t":5870637431,"command":"send to channel","from":"player #51","to":"player #107","ch":"table","value":58,"duration":86687},
-{"t":5971945786,"command":"send to channel","from":"player #107","to":"player #97","ch":"table","value":59,"duration":171645},
-{"t":6073338901,"command":"send to channel","from":"player #97","to":"player #52","ch":"table","value":60,"duration":181387},
-{"t":6174340581,"command":"send to channel","from":"player #52","to":"player #88","ch":"table","value":61,"duration":141514},
-{"t":6275303045,"command":"send to channel","from":"player #88","to":"player #108","ch":"table","value":62,"duration":89086},
-{"t":6375831331,"command":"send to channel","from":"player #108","to":"player #98","ch":"table","value":63,"duration":149420},
-{"t":6477167671,"command":"send to channel","from":"player #98","to":"player #53","ch":"table","value":64,"duration":216234},
-{"t":6578586185,"command":"send to channel","from":"player #53","to":"player #66","ch":"table","value":65,"duration":90013},
-{"t":6679887809,"command":"send to channel","from":"player #66","to":"player #89","ch":"table","value":66,"duration":53821},
-{"t":6781190836,"command":"send to channel","from":"player #89","to":"player #109","ch":"table","value":67,"duration":148052},
-{"t":6882591305,"command":"send to channel","from":"player #109","to":"player #67","ch":"table","value":68,"duration":103933},
-{"t":6983482235,"command":"send to channel","from":"player #67","to":"player #54","ch":"table","value":69,"duration":75650},
-{"t":7084730111,"command":"send to channel","from":"player #54","to":"player #113","ch":"table","value":70,"duration":124424},
-{"t":7186078408,"command":"send to channel","from":"player #113","to":"player #114","ch":"table","value":71,"duration":163377},
-{"t":7286547728,"command":"send to channel","from":"player #114","to":"player #68","ch":"table","value":72,"duration":100720},
-{"t":7387619948,"command":"send to channel","from":"player #68","to":"player #55","ch":"table","value":73,"duration":59453},
-{"t":7488385971,"command":"send to channel","from":"player #55","to":"player #110","ch":"table","value":74,"duration":243474},
-{"t":7589842958,"command":"send to channel","from":"player #110","to":"player #115","ch":"table","value":75,"duration":110690},
-{"t":7690775751,"command":"send to channel","from":"player #115","to":"player #56","ch":"table","value":76,"duration":165547},
-{"t":7792228216,"command":"send to channel","from":"player #56","to":"player #69","ch":"table","value":77,"duration":147762},
-{"t":7893551385,"command":"send to channel","from":"player #69","to":"player #70","ch":"table","value":78,"duration":161323},
-{"t":7994988235,"command":"send to channel","from":"player #70","to":"player #116","ch":"table","value":79,"duration":107876},
-{"t":8096280505,"command":"send to channel","from":"player #116","to":"player #57","ch":"table","value":80,"duration":127940},
-{"t":8197521746,"command":"send to channel","from":"player #57","to":"player #71","ch":"table","value":81,"duration":213485},
-{"t":8298807518,"command":"send to channel","from":"player #71","to":"player #58","ch":"table","value":82,"duration":111667},
-{"t":8399823951,"command":"send to channel","from":"player #58","to":"player #111","ch":"table","value":83,"duration":100754},
-{"t":8500157636,"command":"send to channel","from":"player #111","to":"player #72","ch":"table","value":84,"duration":161372},
-{"t":8601068935,"command":"send to channel","from":"player #72","to":"player #112","ch":"table","value":85,"duration":109256},
-{"t":8701725015,"command":"send to channel","from":"player #112","to":"player #59","ch":"table","value":86,"duration":103040},
-{"t":8803000401,"command":"send to channel","from":"player #59","to":"player #73","ch":"table","value":87,"duration":96000},
-{"t":8904088323,"command":"send to channel","from":"player #73","to":"player #63","ch":"table","value":88,"duration":46862},
-{"t":9005293708,"command":"send to channel","from":"player #63","to":"player #62","ch":"table","value":89,"duration":112247},
-{"t":9106633866,"command":"send to channel","from":"player #62","to":"player #77","ch":"table","value":90,"duration":191479},
-{"t":9207744186,"command":"send to channel","from":"player #77","to":"player #64","ch":"table","value":91,"duration":124289},
-{"t":9308963342,"command":"send to channel","from":"player #64","to":"player #60","ch":"table","value":92,"duration":83972},
-{"t":9409650932,"command":"send to channel","from":"player #60","to":"player #76","ch":"table","value":93,"duration":76517},
-{"t":9510924546,"command":"send to channel","from":"player #76","to":"player #74","ch":"table","value":94,"duration":177601},
-{"t":9612284454,"command":"send to channel","from":"player #74","to":"player #65","ch":"table","value":95,"duration":112003},
-{"t":9713684444,"command":"send to channel","from":"player #65","to":"player #78","ch":"table","value":96,"duration":110333},
-{"t":9814025238,"command":"send to channel","from":"player #78","to":"player #75","ch":"table","value":97,"duration":70960},
-{"t":9915155330,"command":"send to channel","from":"player #75","to":"player #79","ch":"table","value":98,"duration":142327},
-{"t":10016565630,"command":"send to channel","from":"player #79","to":"player #61","ch":"table","value":99,"duration":109874},
-{"t":10117128780,"command":"send to channel","from":"player #61","to":"player #21","ch":"table","value":100,"duration":162670},
-{"t":10218507710,"command":"send to channel","from":"player #21","to":"player #19","ch":"table","value":101,"duration":176890},
-{"t":10319930284,"command":"send to channel","from":"player #19","to":"player #20","ch":"table","value":102,"duration":120523},
-{"t":10421237760,"command":"send to channel","from":"player #20","to":"player #18","ch":"table","value":103,"duration":90384},
-{"t":10522541265,"command":"send to channel","from":"player #18","to":"player #43","ch":"table","value":104,"duration":175002},
-{"t":10623810402,"command":"send to channel","from":"player #43","to":"player #17","ch":"table","value":105,"duration":74685},
-{"t":10725052377,"command":"send to channel","from":"player #17","to":"player #31","ch":"table","value":106,"duration":114223},
-{"t":10826240097,"command":"send to channel","from":"player #31","to":"player #25","ch":"table","value":107,"duration":126187},
-{"t":10927554295,"command":"send to channel","from":"player #25","to":"player #32","ch":"table","value":108,"duration":229505},
-{"t":11028706294,"command":"send to channel","from":"player #32","to":"player #22","ch":"table","value":109,"duration":106873},
-{"t":11130082957,"command":"send to channel","from":"player #22","to":"player #33","ch":"table","value":110,"duration":112653},
-{"t":11231385685,"command":"send to channel","from":"player #33","to":"player #34","ch":"table","value":111,"duration":252395},
-{"t":11332918685,"command":"send to channel","from":"player #34","to":"player #30","ch":"table","value":112,"duration":162319},
-{"t":11434262834,"command":"send to channel","from":"player #30","to":"player #23","ch":"table","value":113,"duration":115620},
-{"t":11534846422,"command":"send to channel","from":"player #23","to":"player #35","ch":"table","value":114,"duration":85986},
-{"t":11636126274,"command":"send to channel","from":"player #35","to":"player #26","ch":"table","value":115,"duration":108223},
-{"t":11737489410,"command":"send to channel","from":"player #26","to":"player #24","ch":"table","value":116,"duration":200354},
-{"t":11838906400,"command":"send to channel","from":"player #24","to":"player #36","ch":"table","value":117,"duration":109490},
-{"t":11939907895,"command":"send to channel","from":"player #36","to":"player #27","ch":"table","value":118,"duration":152829},
-{"t":12041250950,"command":"send to channel","from":"player #27","to":"player #40","ch":"table","value":119,"duration":196240},
-{"t":12142640495,"command":"send to channel","from":"player #40","to":"player #39","ch":"table","value":120,"duration":216965},
-{"t":12243914507,"command":"send to channel","from":"player #39","to":"player #28","ch":"table","value":121,"duration":97157},
-{"t":12344118678,"command":"send to channel","from":"player #28","to":"player #41","ch":"table","value":122,"duration":87686},
-{"t":12445388110,"command":"send to channel","from":"player #41","to":"player #37","ch":"table","value":123,"duration":223600},
-{"t":12546809034,"command":"send to channel","from":"player #37","to":"player #42","ch":"table","value":124,"duration":127233},
-{"t":12648123310,"command":"send to channel","from":"player #42","to":"player #38","ch":"table","value":125,"duration":146377},
-{"t":12749529790,"command":"send to channel","from":"player #38","to":"player #80","ch":"table","value":126,"duration":149697},
-{"t":12850906020,"command":"send to channel","from":"player #80","to":"player #99","ch":"table","value":127,"duration":173280},
-{"t":12951427007,"command":"send to channel","from":"player #99","to":"player #29","ch":"table","value":128,"duration":95700},
-{"t":13052827300,"command":"send to channel","from":"player #29","to":"main","ch":"table","value":129,"duration":92645},
-{"t":13052953945,"command":"stop goroutine","name":"main"}];
+var data = [
+  {
+    "t": 18844,
+    "command": "create goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 18844,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 51555,
+    "command": "sleep goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 53119,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 59377,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 61605,
+    "command": "unblock goroutine",
+    "name": "#19"
+  },
+  {
+    "t": 87845,
+    "command": "block goroutine",
+    "name": "#19"
+  },
+  {
+    "t": 89007,
+    "command": "unblock goroutine",
+    "name": "#19"
+  },
+  {
+    "t": 89931,
+    "command": "block goroutine",
+    "name": "#19"
+  },
+  {
+    "t": 12662660,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 12664864,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 12671620,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 12700728,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 12706891,
+    "command": "create goroutine",
+    "name": "#3",
+    "parent": "#1",
+    "depth": 1
+  },
+  {
+    "t": 12713173,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 12713884,
+    "command": "sleep goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 12717510,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 12720615,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 12736710,
+    "command": "unblock goroutine",
+    "name": "#3"
+  },
+  {
+    "t": 12765605,
+    "command": "block goroutine",
+    "name": "#3"
+  },
+  {
+    "t": 22841836,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 22844538,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 22852740,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 22886399,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 22954381,
+    "command": "create goroutine",
+    "name": "#33",
+    "parent": "#1",
+    "depth": 1
+  },
+  {
+    "t": 22961469,
+    "command": "block goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 22970784,
+    "command": "unblock goroutine",
+    "name": "#33"
+  },
+  {
+    "t": 22987519,
+    "command": "block goroutine",
+    "name": "#33"
+  },
+  {
+    "t": 22997617,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 22998280,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 23001386,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 23064912,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 23069629,
+    "command": "sleep goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 23075483,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 23079371,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 35783015,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 35785931,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 35793705,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 35807643,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 35818357,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 35819993,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 35848722,
+    "command": "create goroutine",
+    "name": "#34",
+    "parent": "#1",
+    "depth": 1
+  },
+  {
+    "t": 35857397,
+    "command": "block goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 35861048,
+    "command": "unblock goroutine",
+    "name": "#34"
+  },
+  {
+    "t": 35863892,
+    "command": "block goroutine",
+    "name": "#34"
+  },
+  {
+    "t": 35868799,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 35871003,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 35872070,
+    "command": "sleep goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 35880437,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 35884656,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 47075720,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 47078114,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 47084087,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 47095939,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 47102244,
+    "command": "create goroutine",
+    "name": "#35",
+    "parent": "#1",
+    "depth": 1
+  },
+  {
+    "t": 47107957,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 47108621,
+    "command": "sleep goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 47112058,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 47114926,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 47119311,
+    "command": "unblock goroutine",
+    "name": "#35"
+  },
+  {
+    "t": 47122108,
+    "command": "block goroutine",
+    "name": "#35"
+  },
+  {
+    "t": 57334706,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 57338120,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 57345657,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 57365355,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 57372371,
+    "command": "create goroutine",
+    "name": "#4",
+    "parent": "#1",
+    "depth": 1
+  },
+  {
+    "t": 57373794,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 57375358,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 57406220,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 57407334,
+    "command": "sleep goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 57412905,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 57418997,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 57436300,
+    "command": "unblock goroutine",
+    "name": "#4"
+  },
+  {
+    "t": 57439619,
+    "command": "block goroutine",
+    "name": "#4"
+  },
+  {
+    "t": 68595032,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 68597331,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 68602902,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 68614588,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 68620656,
+    "command": "create goroutine",
+    "name": "#36",
+    "parent": "#1",
+    "depth": 1
+  },
+  {
+    "t": 68626510,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 68627127,
+    "command": "sleep goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 68630801,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 68633716,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 68640069,
+    "command": "unblock goroutine",
+    "name": "#36"
+  },
+  {
+    "t": 68644928,
+    "command": "block goroutine",
+    "name": "#36"
+  },
+  {
+    "t": 78804833,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 78807630,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 78814931,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 78829367,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 78836572,
+    "command": "create goroutine",
+    "name": "#21",
+    "parent": "#1",
+    "depth": 1
+  },
+  {
+    "t": 78851387,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 78852478,
+    "command": "sleep goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 78858498,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 78861509,
+    "command": "unblock goroutine",
+    "name": "#21"
+  },
+  {
+    "t": 78862955,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 78865515,
+    "command": "block goroutine",
+    "name": "#21"
+  },
+  {
+    "t": 90075754,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 90078480,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 90087037,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 90125532,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 90133331,
+    "command": "create goroutine",
+    "name": "#5",
+    "parent": "#1",
+    "depth": 1
+  },
+  {
+    "t": 90140157,
+    "command": "sleep goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 90144519,
+    "command": "unblock goroutine",
+    "name": "#5"
+  },
+  {
+    "t": 90146747,
+    "command": "block goroutine",
+    "name": "#5"
+  },
+  {
+    "t": 90153953,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 90158006,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 101415890,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 101419067,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 101426486,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 101440945,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 101446919,
+    "command": "create goroutine",
+    "name": "#37",
+    "parent": "#1",
+    "depth": 1
+  },
+  {
+    "t": 101449170,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 101450522,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 101473230,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 101474581,
+    "command": "sleep goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 101481645,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 101485034,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 101499422,
+    "command": "unblock goroutine",
+    "name": "#37"
+  },
+  {
+    "t": 101501864,
+    "command": "block goroutine",
+    "name": "#37"
+  },
+  {
+    "t": 112656186,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 112658438,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 112664056,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 112679037,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 112686835,
+    "command": "create goroutine",
+    "name": "#22",
+    "parent": "#1",
+    "depth": 1
+  },
+  {
+    "t": 112696032,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 112696743,
+    "command": "sleep goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 112701271,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 112705632,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 112706035,
+    "command": "unblock goroutine",
+    "name": "#22"
+  },
+  {
+    "t": 112710895,
+    "command": "block goroutine",
+    "name": "#22"
+  },
+  {
+    "t": 123705454,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 123708299,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 123716619,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 123731457,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 123743048,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 123744921,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 123775475,
+    "command": "create goroutine",
+    "name": "#6",
+    "parent": "#1",
+    "depth": 1
+  },
+  {
+    "t": 123786355,
+    "command": "block goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 123790480,
+    "command": "unblock goroutine",
+    "name": "#6"
+  },
+  {
+    "t": 123793585,
+    "command": "block goroutine",
+    "name": "#6"
+  },
+  {
+    "t": 123799131,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 123801715,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 123802805,
+    "command": "sleep goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 123811410,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 123815582,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 134931789,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 134934752,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 134942029,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 134956583,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 134992162,
+    "command": "create goroutine",
+    "name": "#7",
+    "parent": "#1",
+    "depth": 1
+  },
+  {
+    "t": 135013993,
+    "command": "block goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 135020322,
+    "command": "unblock goroutine",
+    "name": "#7"
+  },
+  {
+    "t": 135024091,
+    "command": "block goroutine",
+    "name": "#7"
+  },
+  {
+    "t": 135034070,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 135037531,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 135038764,
+    "command": "sleep goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 135049383,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 135054811,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 146163623,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 146166135,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 146171398,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 146186141,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 146193916,
+    "command": "create goroutine",
+    "name": "#23",
+    "parent": "#1",
+    "depth": 1
+  },
+  {
+    "t": 146202212,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 146202923,
+    "command": "sleep goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 146206763,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 146210983,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 146219943,
+    "command": "unblock goroutine",
+    "name": "#23"
+  },
+  {
+    "t": 146223735,
+    "command": "block goroutine",
+    "name": "#23"
+  },
+  {
+    "t": 156962271,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 156965708,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 156973104,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 156987184,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 156996262,
+    "command": "create goroutine",
+    "name": "#38",
+    "parent": "#1",
+    "depth": 1
+  },
+  {
+    "t": 157004772,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 157005649,
+    "command": "sleep goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 157011219,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 157015439,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 157027622,
+    "command": "unblock goroutine",
+    "name": "#38"
+  },
+  {
+    "t": 157038977,
+    "command": "block goroutine",
+    "name": "#38"
+  },
+  {
+    "t": 168110834,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 168113133,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 168118538,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 168131836,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 168137927,
+    "command": "create goroutine",
+    "name": "#8",
+    "parent": "#1",
+    "depth": 1
+  },
+  {
+    "t": 168145987,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 168146650,
+    "command": "sleep goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 168150609,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 168153690,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 168161252,
+    "command": "unblock goroutine",
+    "name": "#8"
+  },
+  {
+    "t": 168166182,
+    "command": "block goroutine",
+    "name": "#8"
+  },
+  {
+    "t": 179342834,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 179345062,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 179350798,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 179363361,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 179369263,
+    "command": "create goroutine",
+    "name": "#24",
+    "parent": "#1",
+    "depth": 1
+  },
+  {
+    "t": 179375284,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 179375900,
+    "command": "sleep goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 179379385,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 179382537,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 179392019,
+    "command": "unblock goroutine",
+    "name": "#24"
+  },
+  {
+    "t": 179396783,
+    "command": "block goroutine",
+    "name": "#24"
+  },
+  {
+    "t": 190361714,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 190364463,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 190372238,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 190388001,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 190394211,
+    "command": "create goroutine",
+    "name": "#9",
+    "parent": "#1",
+    "depth": 1
+  },
+  {
+    "t": 190398999,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 190400896,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 190427657,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 190428866,
+    "command": "sleep goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 190435693,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 190440007,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 190444866,
+    "command": "unblock goroutine",
+    "name": "#9"
+  },
+  {
+    "t": 190448066,
+    "command": "block goroutine",
+    "name": "#9"
+  },
+  {
+    "t": 201638442,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 201641097,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 201647521,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 201662644,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 201669589,
+    "command": "create goroutine",
+    "name": "#39",
+    "parent": "#1",
+    "depth": 1
+  },
+  {
+    "t": 201677980,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 201678667,
+    "command": "sleep goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 201682460,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 201685304,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 201699076,
+    "command": "unblock goroutine",
+    "name": "#39"
+  },
+  {
+    "t": 201701447,
+    "command": "block goroutine",
+    "name": "#39"
+  },
+  {
+    "t": 212875751,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 212878074,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 212884309,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 212898507,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 212908866,
+    "command": "create goroutine",
+    "name": "#25",
+    "parent": "#1",
+    "depth": 1
+  },
+  {
+    "t": 212920077,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 212920812,
+    "command": "sleep goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 212924652,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 212927544,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 212948285,
+    "command": "unblock goroutine",
+    "name": "#25"
+  },
+  {
+    "t": 212953026,
+    "command": "block goroutine",
+    "name": "#25"
+  },
+  {
+    "t": 223705997,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 223708628,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 223716711,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 223761085,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 223768812,
+    "command": "create goroutine",
+    "name": "#40",
+    "parent": "#1",
+    "depth": 1
+  },
+  {
+    "t": 223775805,
+    "command": "sleep goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 223779692,
+    "command": "unblock goroutine",
+    "name": "#40"
+  },
+  {
+    "t": 223781968,
+    "command": "block goroutine",
+    "name": "#40"
+  },
+  {
+    "t": 223788936,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 223792610,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 234394921,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 234396533,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 234400800,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 234409357,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 234552124,
+    "command": "create goroutine",
+    "name": "#10",
+    "parent": "#1",
+    "depth": 1
+  },
+  {
+    "t": 234557624,
+    "command": "block goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 234559947,
+    "command": "unblock goroutine",
+    "name": "#10"
+  },
+  {
+    "t": 234562127,
+    "command": "block goroutine",
+    "name": "#10"
+  },
+  {
+    "t": 234566109,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 234566536,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 234568243,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 234569286,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 234569689,
+    "command": "sleep goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 234572035,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 234574287,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 244739407,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 244742607,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 244749718,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 244762589,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 244770293,
+    "command": "create goroutine",
+    "name": "#41",
+    "parent": "#1",
+    "depth": 1
+  },
+  {
+    "t": 244776717,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 244778542,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 244823081,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 244824622,
+    "command": "sleep goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 244832278,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 244835217,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 244844580,
+    "command": "unblock goroutine",
+    "name": "#41"
+  },
+  {
+    "t": 244847496,
+    "command": "block goroutine",
+    "name": "#41"
+  },
+  {
+    "t": 255961333,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 255964746,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 255972260,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 255988521,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 255996841,
+    "command": "create goroutine",
+    "name": "#11",
+    "parent": "#1",
+    "depth": 1
+  },
+  {
+    "t": 256005611,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 256006512,
+    "command": "sleep goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 256013173,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 256018222,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 256031425,
+    "command": "unblock goroutine",
+    "name": "#11"
+  },
+  {
+    "t": 256035502,
+    "command": "block goroutine",
+    "name": "#11"
+  },
+  {
+    "t": 267184609,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 267186956,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 267199780,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 267201605,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 267208100,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 267212888,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 267219572,
+    "command": "create goroutine",
+    "name": "#26",
+    "parent": "#1",
+    "depth": 1
+  },
+  {
+    "t": 267228793,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 267229860,
+    "command": "sleep goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 267234885,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 267238962,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 267253398,
+    "command": "unblock goroutine",
+    "name": "#26"
+  },
+  {
+    "t": 267256929,
+    "command": "block goroutine",
+    "name": "#26"
+  },
+  {
+    "t": 278409972,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 278413172,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 278421753,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 278435572,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 278441806,
+    "command": "create goroutine",
+    "name": "#27",
+    "parent": "#1",
+    "depth": 1
+  },
+  {
+    "t": 278450221,
+    "command": "sleep goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 278455531,
+    "command": "unblock goroutine",
+    "name": "#27"
+  },
+  {
+    "t": 278457261,
+    "command": "block goroutine",
+    "name": "#27"
+  },
+  {
+    "t": 278462500,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 278465178,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 289700994,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 289703530,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 289712016,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 289750677,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 289757788,
+    "command": "create goroutine",
+    "name": "#12",
+    "parent": "#1",
+    "depth": 1
+  },
+  {
+    "t": 289764164,
+    "command": "sleep goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 289768004,
+    "command": "unblock goroutine",
+    "name": "#12"
+  },
+  {
+    "t": 289769687,
+    "command": "block goroutine",
+    "name": "#12"
+  },
+  {
+    "t": 289774618,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 289778387,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 301015554,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 301018730,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 301026481,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 301041889,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 301083844,
+    "command": "create goroutine",
+    "name": "#28",
+    "parent": "#1",
+    "depth": 1
+  },
+  {
+    "t": 301092852,
+    "command": "block goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 301095767,
+    "command": "unblock goroutine",
+    "name": "#28"
+  },
+  {
+    "t": 301099109,
+    "command": "block goroutine",
+    "name": "#28"
+  },
+  {
+    "t": 301110938,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 301114327,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 301115939,
+    "command": "sleep goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 301126108,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 301129948,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 313700354,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 313702771,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 313708674,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 313720691,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 313726902,
+    "command": "create goroutine",
+    "name": "#42",
+    "parent": "#1",
+    "depth": 1
+  },
+  {
+    "t": 313733041,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 313733657,
+    "command": "sleep goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 313737237,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 313740460,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 313749017,
+    "command": "unblock goroutine",
+    "name": "#42"
+  },
+  {
+    "t": 313753474,
+    "command": "block goroutine",
+    "name": "#42"
+  },
+  {
+    "t": 324392786,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 324395322,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 324410018,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 324413242,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 324418647,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 324422676,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 324430641,
+    "command": "create goroutine",
+    "name": "#13",
+    "parent": "#1",
+    "depth": 1
+  },
+  {
+    "t": 324439174,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 324439956,
+    "command": "sleep goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 324444389,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 324447518,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 324473829,
+    "command": "unblock goroutine",
+    "name": "#13"
+  },
+  {
+    "t": 324476863,
+    "command": "block goroutine",
+    "name": "#13"
+  },
+  {
+    "t": 334602563,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 334604910,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 334609509,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 334617686,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 334621787,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 334622546,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 334622664,
+    "command": "create goroutine",
+    "name": "#43",
+    "parent": "#1",
+    "depth": 1
+  },
+  {
+    "t": 334627452,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 334627879,
+    "command": "sleep goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 334630415,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 334631269,
+    "command": "unblock goroutine",
+    "name": "#43"
+  },
+  {
+    "t": 334632359,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 334634184,
+    "command": "block goroutine",
+    "name": "#43"
+  },
+  {
+    "t": 344831968,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 344834243,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 344839577,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 344855150,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 344862806,
+    "command": "create goroutine",
+    "name": "#14",
+    "parent": "#1",
+    "depth": 1
+  },
+  {
+    "t": 344869419,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 344869728,
+    "command": "sleep goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 344871719,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 344874018,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 344881864,
+    "command": "unblock goroutine",
+    "name": "#14"
+  },
+  {
+    "t": 344883855,
+    "command": "block goroutine",
+    "name": "#14"
+  },
+  {
+    "t": 356971582,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 356974569,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 356983529,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 357021692,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 357029846,
+    "command": "create goroutine",
+    "name": "#29",
+    "parent": "#1",
+    "depth": 1
+  },
+  {
+    "t": 357037763,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 357038545,
+    "command": "sleep goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 357042290,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 357046154,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 357062604,
+    "command": "unblock goroutine",
+    "name": "#29"
+  },
+  {
+    "t": 357065354,
+    "command": "block goroutine",
+    "name": "#29"
+  },
+  {
+    "t": 369477988,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 369480974,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 369488109,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 369505934,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 369520702,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 369522717,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 369542723,
+    "command": "create goroutine",
+    "name": "#15",
+    "parent": "#1",
+    "depth": 1
+  },
+  {
+    "t": 369552702,
+    "command": "block goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 369556826,
+    "command": "unblock goroutine",
+    "name": "#15"
+  },
+  {
+    "t": 369559339,
+    "command": "block goroutine",
+    "name": "#15"
+  },
+  {
+    "t": 369564530,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 369565763,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 369566355,
+    "command": "sleep goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 369569911,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 369572566,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 382123250,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 382125502,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 382131333,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 382145413,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 382152761,
+    "command": "create goroutine",
+    "name": "#30",
+    "parent": "#1",
+    "depth": 1
+  },
+  {
+    "t": 382162527,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 382163333,
+    "command": "sleep goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 382168002,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 382172364,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 382174355,
+    "command": "unblock goroutine",
+    "name": "#30"
+  },
+  {
+    "t": 382179072,
+    "command": "block goroutine",
+    "name": "#30"
+  },
+  {
+    "t": 392326532,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 392328642,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 392334236,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 392346823,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 392353744,
+    "command": "create goroutine",
+    "name": "#44",
+    "parent": "#1",
+    "depth": 1
+  },
+  {
+    "t": 392360334,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 392360998,
+    "command": "sleep goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 392364103,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 392366947,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 392378515,
+    "command": "unblock goroutine",
+    "name": "#44"
+  },
+  {
+    "t": 392382046,
+    "command": "block goroutine",
+    "name": "#44"
+  },
+  {
+    "t": 404998034,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 405000523,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 405007871,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 405019510,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 405025388,
+    "command": "create goroutine",
+    "name": "#16",
+    "parent": "#1",
+    "depth": 1
+  },
+  {
+    "t": 405034941,
+    "command": "send to channel",
+    "from": "#1",
+    "to": "#3",
+    "ch": "#4",
+    "value": "0",
+    "duration": 17185
+  },
+  {
+    "t": 405043427,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 405044020,
+    "command": "sleep goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 405047504,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 405048713,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 405051486,
+    "command": "unblock goroutine",
+    "name": "#3"
+  },
+  {
+    "t": 405054402,
+    "command": "unblock goroutine",
+    "name": "#16"
+  },
+  {
+    "t": 405055682,
+    "command": "sleep goroutine",
+    "name": "#3"
+  },
+  {
+    "t": 405058763,
+    "command": "block goroutine",
+    "name": "#16"
+  },
+  {
+    "t": 405059071,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 405061560,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 510219270,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 510221807,
+    "command": "unblock goroutine",
+    "name": "#3"
+  },
+  {
+    "t": 510237333,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 510256177,
+    "command": "unblock goroutine",
+    "name": "#3"
+  },
+  {
+    "t": 510258666,
+    "command": "send to channel",
+    "from": "#3",
+    "to": "#33",
+    "ch": "#4",
+    "value": "1",
+    "duration": 37713
+  },
+  {
+    "t": 510290856,
+    "command": "block goroutine",
+    "name": "#3"
+  },
+  {
+    "t": 510295857,
+    "command": "unblock goroutine",
+    "name": "#33"
+  },
+  {
+    "t": 510302802,
+    "command": "sleep goroutine",
+    "name": "#33"
+  },
+  {
+    "t": 510311478,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 510317499,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 614691469,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 614694456,
+    "command": "unblock goroutine",
+    "name": "#33"
+  },
+  {
+    "t": 614715505,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 614733804,
+    "command": "unblock goroutine",
+    "name": "#33"
+  },
+  {
+    "t": 614736578,
+    "command": "send to channel",
+    "from": "#33",
+    "to": "#34",
+    "ch": "#4",
+    "value": "2",
+    "duration": 17398
+  },
+  {
+    "t": 614750373,
+    "command": "block goroutine",
+    "name": "#33"
+  },
+  {
+    "t": 614753194,
+    "command": "unblock goroutine",
+    "name": "#34"
+  },
+  {
+    "t": 614763505,
+    "command": "sleep goroutine",
+    "name": "#34"
+  },
+  {
+    "t": 614767748,
+    "command": "unblock goroutine",
+    "name": "#33"
+  },
+  {
+    "t": 614768578,
+    "command": "block goroutine",
+    "name": "#33"
+  },
+  {
+    "t": 614776921,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 614778604,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 614801478,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 614805935,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 718731076,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 718733754,
+    "command": "unblock goroutine",
+    "name": "#34"
+  },
+  {
+    "t": 718751461,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 718772391,
+    "command": "unblock goroutine",
+    "name": "#34"
+  },
+  {
+    "t": 718775141,
+    "command": "send to channel",
+    "from": "#34",
+    "to": "#35",
+    "ch": "#4",
+    "value": "3",
+    "duration": 19816
+  },
+  {
+    "t": 718790169,
+    "command": "block goroutine",
+    "name": "#34"
+  },
+  {
+    "t": 718793962,
+    "command": "unblock goroutine",
+    "name": "#35"
+  },
+  {
+    "t": 718803301,
+    "command": "sleep goroutine",
+    "name": "#35"
+  },
+  {
+    "t": 718809417,
+    "command": "unblock goroutine",
+    "name": "#34"
+  },
+  {
+    "t": 718810768,
+    "command": "block goroutine",
+    "name": "#34"
+  },
+  {
+    "t": 718818116,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 718820202,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 718830868,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 718835562,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 823676898,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 823679790,
+    "command": "unblock goroutine",
+    "name": "#35"
+  },
+  {
+    "t": 823689556,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 823728762,
+    "command": "unblock goroutine",
+    "name": "#35"
+  },
+  {
+    "t": 823731346,
+    "command": "send to channel",
+    "from": "#35",
+    "to": "#4",
+    "ch": "#4",
+    "value": "4",
+    "duration": 16995
+  },
+  {
+    "t": 823743648,
+    "command": "block goroutine",
+    "name": "#35"
+  },
+  {
+    "t": 823747749,
+    "command": "unblock goroutine",
+    "name": "#4"
+  },
+  {
+    "t": 823750664,
+    "command": "sleep goroutine",
+    "name": "#4"
+  },
+  {
+    "t": 823755595,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 823759032,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 823762493,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 823765029,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 928568463,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 928571166,
+    "command": "unblock goroutine",
+    "name": "#4"
+  },
+  {
+    "t": 928590603,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 928607764,
+    "command": "unblock goroutine",
+    "name": "#4"
+  },
+  {
+    "t": 928610395,
+    "command": "send to channel",
+    "from": "#4",
+    "to": "#36",
+    "ch": "#4",
+    "value": "5",
+    "duration": 23941
+  },
+  {
+    "t": 928626490,
+    "command": "block goroutine",
+    "name": "#4"
+  },
+  {
+    "t": 928633459,
+    "command": "unblock goroutine",
+    "name": "#36"
+  },
+  {
+    "t": 928641660,
+    "command": "sleep goroutine",
+    "name": "#36"
+  },
+  {
+    "t": 928656333,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 928657779,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 928663089,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 928666099,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 1029728046,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 1029730440,
+    "command": "unblock goroutine",
+    "name": "#36"
+  },
+  {
+    "t": 1029745824,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 1029787116,
+    "command": "unblock goroutine",
+    "name": "#36"
+  },
+  {
+    "t": 1029789581,
+    "command": "send to channel",
+    "from": "#36",
+    "to": "#21",
+    "ch": "#4",
+    "value": "6",
+    "duration": 17493
+  },
+  {
+    "t": 1029803140,
+    "command": "block goroutine",
+    "name": "#36"
+  },
+  {
+    "t": 1029806387,
+    "command": "unblock goroutine",
+    "name": "#21"
+  },
+  {
+    "t": 1029816461,
+    "command": "sleep goroutine",
+    "name": "#21"
+  },
+  {
+    "t": 1029820254,
+    "command": "unblock goroutine",
+    "name": "#36"
+  },
+  {
+    "t": 1029821131,
+    "command": "block goroutine",
+    "name": "#36"
+  },
+  {
+    "t": 1029827483,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 1029833172,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 1130949330,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 1130951558,
+    "command": "unblock goroutine",
+    "name": "#21"
+  },
+  {
+    "t": 1130966799,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 1130987208,
+    "command": "unblock goroutine",
+    "name": "#21"
+  },
+  {
+    "t": 1130989863,
+    "command": "send to channel",
+    "from": "#21",
+    "to": "#5",
+    "ch": "#4",
+    "value": "7",
+    "duration": 39822
+  },
+  {
+    "t": 1131006408,
+    "command": "block goroutine",
+    "name": "#21"
+  },
+  {
+    "t": 1131028950,
+    "command": "unblock goroutine",
+    "name": "#5"
+  },
+  {
+    "t": 1131040873,
+    "command": "sleep goroutine",
+    "name": "#5"
+  },
+  {
+    "t": 1131055783,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 1131060950,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 1232176563,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 1232178838,
+    "command": "unblock goroutine",
+    "name": "#5"
+  },
+  {
+    "t": 1232196166,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 1232210673,
+    "command": "unblock goroutine",
+    "name": "#5"
+  },
+  {
+    "t": 1232213375,
+    "command": "send to channel",
+    "from": "#5",
+    "to": "#37",
+    "ch": "#4",
+    "value": "8",
+    "duration": 28492
+  },
+  {
+    "t": 1232236154,
+    "command": "block goroutine",
+    "name": "#5"
+  },
+  {
+    "t": 1232240800,
+    "command": "unblock goroutine",
+    "name": "#37"
+  },
+  {
+    "t": 1232252960,
+    "command": "sleep goroutine",
+    "name": "#37"
+  },
+  {
+    "t": 1232259336,
+    "command": "unblock goroutine",
+    "name": "#5"
+  },
+  {
+    "t": 1232260569,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 1232260901,
+    "command": "block goroutine",
+    "name": "#5"
+  },
+  {
+    "t": 1232261896,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 1232268035,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 1232270453,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 1332575755,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 1332578172,
+    "command": "unblock goroutine",
+    "name": "#37"
+  },
+  {
+    "t": 1332584406,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 1332595903,
+    "command": "unblock goroutine",
+    "name": "#37"
+  },
+  {
+    "t": 1332598036,
+    "command": "send to channel",
+    "from": "#37",
+    "to": "#22",
+    "ch": "#4",
+    "value": "9",
+    "duration": 16261
+  },
+  {
+    "t": 1332603867,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 1332608561,
+    "command": "block goroutine",
+    "name": "#37"
+  },
+  {
+    "t": 1332612732,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 1332613633,
+    "command": "unblock goroutine",
+    "name": "#22"
+  },
+  {
+    "t": 1332617521,
+    "command": "sleep goroutine",
+    "name": "#22"
+  },
+  {
+    "t": 1406273768,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 1406276470,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 1406285240,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 1406299913,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 1406302307,
+    "command": "block goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 1406311409,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 1406315012,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 1433802040,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 1433804268,
+    "command": "unblock goroutine",
+    "name": "#22"
+  },
+  {
+    "t": 1433809293,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 1433820600,
+    "command": "unblock goroutine",
+    "name": "#22"
+  },
+  {
+    "t": 1433822638,
+    "command": "send to channel",
+    "from": "#22",
+    "to": "#6",
+    "ch": "#4",
+    "value": "10",
+    "duration": 11046
+  },
+  {
+    "t": 1433830460,
+    "command": "block goroutine",
+    "name": "#22"
+  },
+  {
+    "t": 1433833163,
+    "command": "unblock goroutine",
+    "name": "#6"
+  },
+  {
+    "t": 1433836813,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 1433837382,
+    "command": "sleep goroutine",
+    "name": "#6"
+  },
+  {
+    "t": 1433840037,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 1433842976,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 1433844540,
+    "command": "unblock goroutine",
+    "name": "#22"
+  },
+  {
+    "t": 1433848926,
+    "command": "block goroutine",
+    "name": "#22"
+  },
+  {
+    "t": 1535037782,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 1535040413,
+    "command": "unblock goroutine",
+    "name": "#6"
+  },
+  {
+    "t": 1535046008,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 1535059898,
+    "command": "unblock goroutine",
+    "name": "#6"
+  },
+  {
+    "t": 1535062268,
+    "command": "send to channel",
+    "from": "#6",
+    "to": "#7",
+    "ch": "#4",
+    "value": "11",
+    "duration": 23420
+  },
+  {
+    "t": 1535077083,
+    "command": "block goroutine",
+    "name": "#6"
+  },
+  {
+    "t": 1535085190,
+    "command": "unblock goroutine",
+    "name": "#7"
+  },
+  {
+    "t": 1535088129,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 1535088769,
+    "command": "sleep goroutine",
+    "name": "#7"
+  },
+  {
+    "t": 1535093296,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 1535097611,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 1636308915,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 1636310977,
+    "command": "unblock goroutine",
+    "name": "#7"
+  },
+  {
+    "t": 1636316429,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 1636330035,
+    "command": "unblock goroutine",
+    "name": "#7"
+  },
+  {
+    "t": 1636332405,
+    "command": "send to channel",
+    "from": "#7",
+    "to": "#23",
+    "ch": "#4",
+    "value": "12",
+    "duration": 21713
+  },
+  {
+    "t": 1636345656,
+    "command": "block goroutine",
+    "name": "#7"
+  },
+  {
+    "t": 1636351463,
+    "command": "unblock goroutine",
+    "name": "#23"
+  },
+  {
+    "t": 1636358171,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 1636358930,
+    "command": "sleep goroutine",
+    "name": "#23"
+  },
+  {
+    "t": 1636363173,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 1636367107,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 1737527354,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 1737530127,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 1737542880,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 1737544373,
+    "command": "unblock goroutine",
+    "name": "#23"
+  },
+  {
+    "t": 1737551129,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 1737554589,
+    "command": "unblock goroutine",
+    "name": "#23"
+  },
+  {
+    "t": 1737556486,
+    "command": "send to channel",
+    "from": "#23",
+    "to": "#38",
+    "ch": "#4",
+    "value": "13",
+    "duration": 11899
+  },
+  {
+    "t": 1737564640,
+    "command": "block goroutine",
+    "name": "#23"
+  },
+  {
+    "t": 1737568006,
+    "command": "unblock goroutine",
+    "name": "#38"
+  },
+  {
+    "t": 1737571538,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 1737572106,
+    "command": "sleep goroutine",
+    "name": "#38"
+  },
+  {
+    "t": 1737575046,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 1737577819,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 1838753141,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 1838755251,
+    "command": "unblock goroutine",
+    "name": "#38"
+  },
+  {
+    "t": 1838760821,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 1838773242,
+    "command": "unblock goroutine",
+    "name": "#38"
+  },
+  {
+    "t": 1838775233,
+    "command": "send to channel",
+    "from": "#38",
+    "to": "#8",
+    "ch": "#4",
+    "value": "14",
+    "duration": 16972
+  },
+  {
+    "t": 1838786871,
+    "command": "block goroutine",
+    "name": "#38"
+  },
+  {
+    "t": 1838791423,
+    "command": "unblock goroutine",
+    "name": "#8"
+  },
+  {
+    "t": 1838795097,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 1838796780,
+    "command": "sleep goroutine",
+    "name": "#8"
+  },
+  {
+    "t": 1838800833,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 1838804223,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 1939995260,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 1939997512,
+    "command": "unblock goroutine",
+    "name": "#8"
+  },
+  {
+    "t": 1940002727,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 1940013796,
+    "command": "unblock goroutine",
+    "name": "#8"
+  },
+  {
+    "t": 1940015669,
+    "command": "send to channel",
+    "from": "#8",
+    "to": "#24",
+    "ch": "#4",
+    "value": "15",
+    "duration": 10951
+  },
+  {
+    "t": 1940023799,
+    "command": "block goroutine",
+    "name": "#8"
+  },
+  {
+    "t": 1940026122,
+    "command": "unblock goroutine",
+    "name": "#24"
+  },
+  {
+    "t": 1940029820,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 1940030342,
+    "command": "sleep goroutine",
+    "name": "#24"
+  },
+  {
+    "t": 1940032973,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 1940035865,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 1940037808,
+    "command": "unblock goroutine",
+    "name": "#8"
+  },
+  {
+    "t": 1940040202,
+    "command": "block goroutine",
+    "name": "#8"
+  },
+  {
+    "t": 2040697646,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 2040699898,
+    "command": "unblock goroutine",
+    "name": "#24"
+  },
+  {
+    "t": 2040705350,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 2040716751,
+    "command": "unblock goroutine",
+    "name": "#24"
+  },
+  {
+    "t": 2040718861,
+    "command": "send to channel",
+    "from": "#24",
+    "to": "#9",
+    "ch": "#4",
+    "value": "16",
+    "duration": 10643
+  },
+  {
+    "t": 2040726422,
+    "command": "block goroutine",
+    "name": "#24"
+  },
+  {
+    "t": 2040729006,
+    "command": "unblock goroutine",
+    "name": "#9"
+  },
+  {
+    "t": 2040732704,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 2040733296,
+    "command": "sleep goroutine",
+    "name": "#9"
+  },
+  {
+    "t": 2040735975,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 2040738393,
+    "command": "unblock goroutine",
+    "name": "#24"
+  },
+  {
+    "t": 2040738938,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 2040743062,
+    "command": "block goroutine",
+    "name": "#24"
+  },
+  {
+    "t": 2141938035,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 2141940239,
+    "command": "unblock goroutine",
+    "name": "#9"
+  },
+  {
+    "t": 2141945904,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 2141957614,
+    "command": "unblock goroutine",
+    "name": "#9"
+  },
+  {
+    "t": 2141960553,
+    "command": "send to channel",
+    "from": "#9",
+    "to": "#39",
+    "ch": "#4",
+    "value": "17",
+    "duration": 18584
+  },
+  {
+    "t": 2141973021,
+    "command": "block goroutine",
+    "name": "#9"
+  },
+  {
+    "t": 2141978497,
+    "command": "unblock goroutine",
+    "name": "#39"
+  },
+  {
+    "t": 2141981057,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 2141981673,
+    "command": "sleep goroutine",
+    "name": "#39"
+  },
+  {
+    "t": 2141986367,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 2141989495,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 2243180225,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 2243182761,
+    "command": "unblock goroutine",
+    "name": "#39"
+  },
+  {
+    "t": 2243189469,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 2243202601,
+    "command": "unblock goroutine",
+    "name": "#39"
+  },
+  {
+    "t": 2243205185,
+    "command": "send to channel",
+    "from": "#39",
+    "to": "#25",
+    "ch": "#4",
+    "value": "18",
+    "duration": 14744
+  },
+  {
+    "t": 2243215188,
+    "command": "block goroutine",
+    "name": "#39"
+  },
+  {
+    "t": 2243219407,
+    "command": "unblock goroutine",
+    "name": "#25"
+  },
+  {
+    "t": 2243223318,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 2243223792,
+    "command": "sleep goroutine",
+    "name": "#25"
+  },
+  {
+    "t": 2243226732,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 2243229813,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 2344003428,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 2344005348,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 2344015375,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 2344016821,
+    "command": "unblock goroutine",
+    "name": "#25"
+  },
+  {
+    "t": 2344021348,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 2344024359,
+    "command": "unblock goroutine",
+    "name": "#25"
+  },
+  {
+    "t": 2344026184,
+    "command": "send to channel",
+    "from": "#25",
+    "to": "#40",
+    "ch": "#4",
+    "value": "19",
+    "duration": 8747
+  },
+  {
+    "t": 2344031873,
+    "command": "block goroutine",
+    "name": "#25"
+  },
+  {
+    "t": 2344034575,
+    "command": "unblock goroutine",
+    "name": "#40"
+  },
+  {
+    "t": 2344037633,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 2344038178,
+    "command": "sleep goroutine",
+    "name": "#40"
+  },
+  {
+    "t": 2344050859,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 2344053254,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 2445235687,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 2445237915,
+    "command": "unblock goroutine",
+    "name": "#40"
+  },
+  {
+    "t": 2445243983,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 2445255005,
+    "command": "unblock goroutine",
+    "name": "#40"
+  },
+  {
+    "t": 2445257139,
+    "command": "send to channel",
+    "from": "#40",
+    "to": "#10",
+    "ch": "#4",
+    "value": "20",
+    "duration": 10785
+  },
+  {
+    "t": 2445264724,
+    "command": "block goroutine",
+    "name": "#40"
+  },
+  {
+    "t": 2445267307,
+    "command": "unblock goroutine",
+    "name": "#10"
+  },
+  {
+    "t": 2445271219,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 2445271811,
+    "command": "sleep goroutine",
+    "name": "#10"
+  },
+  {
+    "t": 2445274466,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 2445277382,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 2445278377,
+    "command": "unblock goroutine",
+    "name": "#40"
+  },
+  {
+    "t": 2445280890,
+    "command": "block goroutine",
+    "name": "#40"
+  },
+  {
+    "t": 2546470363,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 2546472449,
+    "command": "unblock goroutine",
+    "name": "#10"
+  },
+  {
+    "t": 2546477664,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 2546489468,
+    "command": "unblock goroutine",
+    "name": "#10"
+  },
+  {
+    "t": 2546492810,
+    "command": "send to channel",
+    "from": "#10",
+    "to": "#41",
+    "ch": "#4",
+    "value": "21",
+    "duration": 44184
+  },
+  {
+    "t": 2546494209,
+    "command": "block goroutine",
+    "name": "#10"
+  },
+  {
+    "t": 2546520662,
+    "command": "unblock goroutine",
+    "name": "#10"
+  },
+  {
+    "t": 2546530475,
+    "command": "block goroutine",
+    "name": "#10"
+  },
+  {
+    "t": 2546536378,
+    "command": "unblock goroutine",
+    "name": "#41"
+  },
+  {
+    "t": 2546540858,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 2546541664,
+    "command": "sleep goroutine",
+    "name": "#41"
+  },
+  {
+    "t": 2546545930,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 2546549794,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 2647716180,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 2647718740,
+    "command": "unblock goroutine",
+    "name": "#41"
+  },
+  {
+    "t": 2647723765,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 2647736494,
+    "command": "unblock goroutine",
+    "name": "#41"
+  },
+  {
+    "t": 2647738817,
+    "command": "send to channel",
+    "from": "#41",
+    "to": "#11",
+    "ch": "#4",
+    "value": "22",
+    "duration": 19318
+  },
+  {
+    "t": 2647751925,
+    "command": "block goroutine",
+    "name": "#41"
+  },
+  {
+    "t": 2647757614,
+    "command": "unblock goroutine",
+    "name": "#11"
+  },
+  {
+    "t": 2647760648,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 2647761312,
+    "command": "sleep goroutine",
+    "name": "#11"
+  },
+  {
+    "t": 2647765199,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 2647769252,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 2748955288,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 2748957564,
+    "command": "unblock goroutine",
+    "name": "#11"
+  },
+  {
+    "t": 2748962921,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 2748975555,
+    "command": "unblock goroutine",
+    "name": "#11"
+  },
+  {
+    "t": 2748996960,
+    "command": "send to channel",
+    "from": "#11",
+    "to": "#26",
+    "ch": "#4",
+    "value": "23",
+    "duration": 21665
+  },
+  {
+    "t": 2748998571,
+    "command": "block goroutine",
+    "name": "#11"
+  },
+  {
+    "t": 2749006228,
+    "command": "unblock goroutine",
+    "name": "#11"
+  },
+  {
+    "t": 2749014690,
+    "command": "block goroutine",
+    "name": "#11"
+  },
+  {
+    "t": 2749018198,
+    "command": "unblock goroutine",
+    "name": "#26"
+  },
+  {
+    "t": 2749021825,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 2749022370,
+    "command": "sleep goroutine",
+    "name": "#26"
+  },
+  {
+    "t": 2749025333,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 2749028296,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 2849113722,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 2849116448,
+    "command": "unblock goroutine",
+    "name": "#26"
+  },
+  {
+    "t": 2849123013,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 2849138302,
+    "command": "unblock goroutine",
+    "name": "#26"
+  },
+  {
+    "t": 2849140625,
+    "command": "send to channel",
+    "from": "#26",
+    "to": "#27",
+    "ch": "#4",
+    "value": "24",
+    "duration": 14554
+  },
+  {
+    "t": 2849150652,
+    "command": "block goroutine",
+    "name": "#26"
+  },
+  {
+    "t": 2849154658,
+    "command": "unblock goroutine",
+    "name": "#27"
+  },
+  {
+    "t": 2849159185,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 2849162622,
+    "command": "sleep goroutine",
+    "name": "#27"
+  },
+  {
+    "t": 2849167102,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 2849171488,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 2949742839,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 2949746063,
+    "command": "unblock goroutine",
+    "name": "#27"
+  },
+  {
+    "t": 2949754454,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 2949767633,
+    "command": "unblock goroutine",
+    "name": "#27"
+  },
+  {
+    "t": 2949772421,
+    "command": "send to channel",
+    "from": "#27",
+    "to": "#12",
+    "ch": "#4",
+    "value": "25",
+    "duration": 21002
+  },
+  {
+    "t": 2949773844,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 2949775053,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 2949786857,
+    "command": "block goroutine",
+    "name": "#27"
+  },
+  {
+    "t": 2949792783,
+    "command": "unblock goroutine",
+    "name": "#12"
+  },
+  {
+    "t": 2949797168,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 2949797856,
+    "command": "sleep goroutine",
+    "name": "#12"
+  },
+  {
+    "t": 2949801838,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 2949805891,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 3051010463,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 3051012881,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 3051025326,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 3051027269,
+    "command": "unblock goroutine",
+    "name": "#12"
+  },
+  {
+    "t": 3051033598,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 3051038813,
+    "command": "unblock goroutine",
+    "name": "#12"
+  },
+  {
+    "t": 3051041586,
+    "command": "send to channel",
+    "from": "#12",
+    "to": "#28",
+    "ch": "#4",
+    "value": "26",
+    "duration": 17091
+  },
+  {
+    "t": 3051054671,
+    "command": "block goroutine",
+    "name": "#12"
+  },
+  {
+    "t": 3051058155,
+    "command": "unblock goroutine",
+    "name": "#28"
+  },
+  {
+    "t": 3051061924,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 3051062588,
+    "command": "sleep goroutine",
+    "name": "#28"
+  },
+  {
+    "t": 3051066878,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 3051070766,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 3152261993,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 3152264363,
+    "command": "unblock goroutine",
+    "name": "#28"
+  },
+  {
+    "t": 3152269626,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 3152280956,
+    "command": "unblock goroutine",
+    "name": "#28"
+  },
+  {
+    "t": 3152283137,
+    "command": "send to channel",
+    "from": "#28",
+    "to": "#42",
+    "ch": "#4",
+    "value": "27",
+    "duration": 10714
+  },
+  {
+    "t": 3152291125,
+    "command": "block goroutine",
+    "name": "#28"
+  },
+  {
+    "t": 3152293424,
+    "command": "unblock goroutine",
+    "name": "#42"
+  },
+  {
+    "t": 3152297311,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 3152297904,
+    "command": "sleep goroutine",
+    "name": "#42"
+  },
+  {
+    "t": 3152300748,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 3152303759,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 3152317768,
+    "command": "unblock goroutine",
+    "name": "#28"
+  },
+  {
+    "t": 3152318621,
+    "command": "block goroutine",
+    "name": "#28"
+  },
+  {
+    "t": 3253500580,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 3253502974,
+    "command": "unblock goroutine",
+    "name": "#42"
+  },
+  {
+    "t": 3253508355,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 3253519353,
+    "command": "unblock goroutine",
+    "name": "#42"
+  },
+  {
+    "t": 3253521487,
+    "command": "send to channel",
+    "from": "#42",
+    "to": "#13",
+    "ch": "#4",
+    "value": "28",
+    "duration": 10595
+  },
+  {
+    "t": 3253529285,
+    "command": "block goroutine",
+    "name": "#42"
+  },
+  {
+    "t": 3253531656,
+    "command": "unblock goroutine",
+    "name": "#13"
+  },
+  {
+    "t": 3253535496,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 3253536065,
+    "command": "sleep goroutine",
+    "name": "#13"
+  },
+  {
+    "t": 3253538719,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 3253541682,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 3253542915,
+    "command": "unblock goroutine",
+    "name": "#42"
+  },
+  {
+    "t": 3253545356,
+    "command": "block goroutine",
+    "name": "#42"
+  },
+  {
+    "t": 3354735043,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 3354737105,
+    "command": "unblock goroutine",
+    "name": "#13"
+  },
+  {
+    "t": 3354742747,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 3354756400,
+    "command": "unblock goroutine",
+    "name": "#13"
+  },
+  {
+    "t": 3354759316,
+    "command": "block goroutine",
+    "name": "#13"
+  },
+  {
+    "t": 3354764696,
+    "command": "unblock goroutine",
+    "name": "#13"
+  },
+  {
+    "t": 3354765810,
+    "command": "send to channel",
+    "from": "#13",
+    "to": "#43",
+    "ch": "#4",
+    "value": "29",
+    "duration": 17446
+  },
+  {
+    "t": 3354776121,
+    "command": "block goroutine",
+    "name": "#13"
+  },
+  {
+    "t": 3354782545,
+    "command": "unblock goroutine",
+    "name": "#43"
+  },
+  {
+    "t": 3354787713,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 3354788732,
+    "command": "sleep goroutine",
+    "name": "#43"
+  },
+  {
+    "t": 3354793354,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 3354797573,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 3456009565,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 3456012244,
+    "command": "unblock goroutine",
+    "name": "#43"
+  },
+  {
+    "t": 3456019971,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 3456034691,
+    "command": "unblock goroutine",
+    "name": "#43"
+  },
+  {
+    "t": 3456038484,
+    "command": "send to channel",
+    "from": "#43",
+    "to": "#14",
+    "ch": "#4",
+    "value": "30",
+    "duration": 29416
+  },
+  {
+    "t": 3456040024,
+    "command": "block goroutine",
+    "name": "#43"
+  },
+  {
+    "t": 3456048676,
+    "command": "unblock goroutine",
+    "name": "#43"
+  },
+  {
+    "t": 3456061950,
+    "command": "block goroutine",
+    "name": "#43"
+  },
+  {
+    "t": 3456067307,
+    "command": "unblock goroutine",
+    "name": "#14"
+  },
+  {
+    "t": 3456072048,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 3456072735,
+    "command": "sleep goroutine",
+    "name": "#14"
+  },
+  {
+    "t": 3456077784,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 3456082312,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 3556140881,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 3556143583,
+    "command": "unblock goroutine",
+    "name": "#14"
+  },
+  {
+    "t": 3556150363,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 3556164703,
+    "command": "unblock goroutine",
+    "name": "#14"
+  },
+  {
+    "t": 3556167074,
+    "command": "send to channel",
+    "from": "#14",
+    "to": "#29",
+    "ch": "#4",
+    "value": "31",
+    "duration": 22755
+  },
+  {
+    "t": 3556183097,
+    "command": "block goroutine",
+    "name": "#14"
+  },
+  {
+    "t": 3556189189,
+    "command": "unblock goroutine",
+    "name": "#29"
+  },
+  {
+    "t": 3556193930,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 3556199548,
+    "command": "sleep goroutine",
+    "name": "#29"
+  },
+  {
+    "t": 3556203767,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 3556208129,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 3657034271,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 3657037163,
+    "command": "unblock goroutine",
+    "name": "#29"
+  },
+  {
+    "t": 3657045625,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 3657060654,
+    "command": "unblock goroutine",
+    "name": "#29"
+  },
+  {
+    "t": 3657063688,
+    "command": "send to channel",
+    "from": "#29",
+    "to": "#15",
+    "ch": "#4",
+    "value": "32",
+    "duration": 36456
+  },
+  {
+    "t": 3657095000,
+    "command": "block goroutine",
+    "name": "#29"
+  },
+  {
+    "t": 3657099575,
+    "command": "unblock goroutine",
+    "name": "#15"
+  },
+  {
+    "t": 3657103510,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 3657104079,
+    "command": "sleep goroutine",
+    "name": "#15"
+  },
+  {
+    "t": 3657109388,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 3657115788,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 3757274340,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 3757276284,
+    "command": "unblock goroutine",
+    "name": "#15"
+  },
+  {
+    "t": 3757279650,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 3757287093,
+    "command": "unblock goroutine",
+    "name": "#15"
+  },
+  {
+    "t": 3757288847,
+    "command": "send to channel",
+    "from": "#15",
+    "to": "#30",
+    "ch": "#4",
+    "value": "33",
+    "duration": 6660
+  },
+  {
+    "t": 3757293445,
+    "command": "block goroutine",
+    "name": "#15"
+  },
+  {
+    "t": 3757295294,
+    "command": "unblock goroutine",
+    "name": "#30"
+  },
+  {
+    "t": 3757297451,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 3757297759,
+    "command": "sleep goroutine",
+    "name": "#30"
+  },
+  {
+    "t": 3757299442,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 3757301244,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 3857339523,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 3857342296,
+    "command": "unblock goroutine",
+    "name": "#30"
+  },
+  {
+    "t": 3857352299,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 3857363108,
+    "command": "unblock goroutine",
+    "name": "#30"
+  },
+  {
+    "t": 3857365123,
+    "command": "send to channel",
+    "from": "#30",
+    "to": "#44",
+    "ch": "#4",
+    "value": "34",
+    "duration": 15336
+  },
+  {
+    "t": 3857373016,
+    "command": "block goroutine",
+    "name": "#30"
+  },
+  {
+    "t": 3857380033,
+    "command": "unblock goroutine",
+    "name": "#44"
+  },
+  {
+    "t": 3857383090,
+    "command": "sleep goroutine",
+    "name": "#44"
+  },
+  {
+    "t": 3857385769,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 3857388068,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 3958037784,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 3958040415,
+    "command": "unblock goroutine",
+    "name": "#44"
+  },
+  {
+    "t": 3958048309,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 3958075283,
+    "command": "unblock goroutine",
+    "name": "#44"
+  },
+  {
+    "t": 3958077654,
+    "command": "send to channel",
+    "from": "#44",
+    "to": "#16",
+    "ch": "#4",
+    "value": "35",
+    "duration": 19911
+  },
+  {
+    "t": 3958093156,
+    "command": "block goroutine",
+    "name": "#44"
+  },
+  {
+    "t": 3958096569,
+    "command": "unblock goroutine",
+    "name": "#16"
+  },
+  {
+    "t": 3958101476,
+    "command": "sleep goroutine",
+    "name": "#16"
+  },
+  {
+    "t": 3958105672,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 3958109559,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 3958124469,
+    "command": "unblock goroutine",
+    "name": "#44"
+  },
+  {
+    "t": 3958128546,
+    "command": "block goroutine",
+    "name": "#44"
+  },
+  {
+    "t": 4058218760,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 4058221272,
+    "command": "unblock goroutine",
+    "name": "#16"
+  },
+  {
+    "t": 4058227909,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 4058241468,
+    "command": "unblock goroutine",
+    "name": "#16"
+  },
+  {
+    "t": 4058243980,
+    "command": "send to channel",
+    "from": "#16",
+    "to": "#3",
+    "ch": "#4",
+    "value": "36",
+    "duration": 20172
+  },
+  {
+    "t": 4058252632,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 4058254505,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 4058257989,
+    "command": "block goroutine",
+    "name": "#16"
+  },
+  {
+    "t": 4058263607,
+    "command": "unblock goroutine",
+    "name": "#3"
+  },
+  {
+    "t": 4058267968,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 4058268656,
+    "command": "sleep goroutine",
+    "name": "#3"
+  },
+  {
+    "t": 4058272662,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 4058276573,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 4158600292,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 4158603065,
+    "command": "unblock goroutine",
+    "name": "#3"
+  },
+  {
+    "t": 4158610674,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 4158628215,
+    "command": "unblock goroutine",
+    "name": "#3"
+  },
+  {
+    "t": 4158630467,
+    "command": "send to channel",
+    "from": "#3",
+    "to": "#33",
+    "ch": "#4",
+    "value": "37",
+    "duration": 17683
+  },
+  {
+    "t": 4158641228,
+    "command": "block goroutine",
+    "name": "#3"
+  },
+  {
+    "t": 4158647510,
+    "command": "unblock goroutine",
+    "name": "#33"
+  },
+  {
+    "t": 4158652132,
+    "command": "sleep goroutine",
+    "name": "#33"
+  },
+  {
+    "t": 4158662680,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 4158675314,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 4258823152,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 4258825664,
+    "command": "unblock goroutine",
+    "name": "#33"
+  },
+  {
+    "t": 4258845315,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 4258860533,
+    "command": "unblock goroutine",
+    "name": "#33"
+  },
+  {
+    "t": 4258862547,
+    "command": "block goroutine",
+    "name": "#33"
+  },
+  {
+    "t": 4258866719,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 4258867667,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 4258870085,
+    "command": "unblock goroutine",
+    "name": "#33"
+  },
+  {
+    "t": 4258871152,
+    "command": "send to channel",
+    "from": "#33",
+    "to": "#34",
+    "ch": "#4",
+    "value": "38",
+    "duration": 8533
+  },
+  {
+    "t": 4258876367,
+    "command": "block goroutine",
+    "name": "#33"
+  },
+  {
+    "t": 4258879282,
+    "command": "unblock goroutine",
+    "name": "#34"
+  },
+  {
+    "t": 4258882245,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 4258882601,
+    "command": "sleep goroutine",
+    "name": "#34"
+  },
+  {
+    "t": 4258884805,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 4258888124,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 4358976987,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 4358979238,
+    "command": "unblock goroutine",
+    "name": "#34"
+  },
+  {
+    "t": 4358984382,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 4358996210,
+    "command": "unblock goroutine",
+    "name": "#34"
+  },
+  {
+    "t": 4358998296,
+    "command": "send to channel",
+    "from": "#34",
+    "to": "#35",
+    "ch": "#4",
+    "value": "39",
+    "duration": 11259
+  },
+  {
+    "t": 4359006284,
+    "command": "block goroutine",
+    "name": "#34"
+  },
+  {
+    "t": 4359009081,
+    "command": "unblock goroutine",
+    "name": "#35"
+  },
+  {
+    "t": 4359012258,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 4359012708,
+    "command": "sleep goroutine",
+    "name": "#35"
+  },
+  {
+    "t": 4359015007,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 4359017781,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 4459404978,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 4459407349,
+    "command": "unblock goroutine",
+    "name": "#35"
+  },
+  {
+    "t": 4459412848,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 4459424320,
+    "command": "unblock goroutine",
+    "name": "#35"
+  },
+  {
+    "t": 4459427189,
+    "command": "send to channel",
+    "from": "#35",
+    "to": "#4",
+    "ch": "#4",
+    "value": "40",
+    "duration": 15217
+  },
+  {
+    "t": 4459437950,
+    "command": "block goroutine",
+    "name": "#35"
+  },
+  {
+    "t": 4459441624,
+    "command": "unblock goroutine",
+    "name": "#4"
+  },
+  {
+    "t": 4459446246,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 4459446886,
+    "command": "sleep goroutine",
+    "name": "#4"
+  },
+  {
+    "t": 4459448593,
+    "command": "unblock goroutine",
+    "name": "#35"
+  },
+  {
+    "t": 4459450252,
+    "command": "block goroutine",
+    "name": "#35"
+  },
+  {
+    "t": 4459451509,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 4459455775,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 4560648425,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 4560650843,
+    "command": "unblock goroutine",
+    "name": "#4"
+  },
+  {
+    "t": 4560656342,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 4560668217,
+    "command": "unblock goroutine",
+    "name": "#4"
+  },
+  {
+    "t": 4560670445,
+    "command": "send to channel",
+    "from": "#4",
+    "to": "#36",
+    "ch": "#4",
+    "value": "41",
+    "duration": 11141
+  },
+  {
+    "t": 4560678671,
+    "command": "block goroutine",
+    "name": "#4"
+  },
+  {
+    "t": 4560681112,
+    "command": "unblock goroutine",
+    "name": "#36"
+  },
+  {
+    "t": 4560685094,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 4560685663,
+    "command": "sleep goroutine",
+    "name": "#36"
+  },
+  {
+    "t": 4560688555,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 4560691447,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 4560705195,
+    "command": "unblock goroutine",
+    "name": "#4"
+  },
+  {
+    "t": 4560706499,
+    "command": "block goroutine",
+    "name": "#4"
+  },
+  {
+    "t": 4661781365,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 4661783142,
+    "command": "unblock goroutine",
+    "name": "#36"
+  },
+  {
+    "t": 4661788665,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 4661800778,
+    "command": "unblock goroutine",
+    "name": "#36"
+  },
+  {
+    "t": 4661802698,
+    "command": "send to channel",
+    "from": "#36",
+    "to": "#21",
+    "ch": "#4",
+    "value": "42",
+    "duration": 22115
+  },
+  {
+    "t": 4661822111,
+    "command": "block goroutine",
+    "name": "#36"
+  },
+  {
+    "t": 4661824126,
+    "command": "unblock goroutine",
+    "name": "#21"
+  },
+  {
+    "t": 4661827871,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 4661828274,
+    "command": "sleep goroutine",
+    "name": "#21"
+  },
+  {
+    "t": 4661830716,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 4661833370,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 4661847830,
+    "command": "unblock goroutine",
+    "name": "#36"
+  },
+  {
+    "t": 4661849418,
+    "command": "block goroutine",
+    "name": "#36"
+  },
+  {
+    "t": 4763000562,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 4763002909,
+    "command": "unblock goroutine",
+    "name": "#21"
+  },
+  {
+    "t": 4763008479,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 4763020141,
+    "command": "unblock goroutine",
+    "name": "#21"
+  },
+  {
+    "t": 4763023318,
+    "command": "send to channel",
+    "from": "#21",
+    "to": "#5",
+    "ch": "#4",
+    "value": "43",
+    "duration": 18133
+  },
+  {
+    "t": 4763024645,
+    "command": "block goroutine",
+    "name": "#21"
+  },
+  {
+    "t": 4763030121,
+    "command": "unblock goroutine",
+    "name": "#21"
+  },
+  {
+    "t": 4763037564,
+    "command": "block goroutine",
+    "name": "#21"
+  },
+  {
+    "t": 4763040882,
+    "command": "unblock goroutine",
+    "name": "#5"
+  },
+  {
+    "t": 4763044627,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 4763045196,
+    "command": "sleep goroutine",
+    "name": "#5"
+  },
+  {
+    "t": 4763047780,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 4763051051,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 4864256572,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 4864259084,
+    "command": "unblock goroutine",
+    "name": "#5"
+  },
+  {
+    "t": 4864266314,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 4864277834,
+    "command": "unblock goroutine",
+    "name": "#5"
+  },
+  {
+    "t": 4864280394,
+    "command": "send to channel",
+    "from": "#5",
+    "to": "#37",
+    "ch": "#4",
+    "value": "44",
+    "duration": 15455
+  },
+  {
+    "t": 4864290183,
+    "command": "block goroutine",
+    "name": "#5"
+  },
+  {
+    "t": 4864295256,
+    "command": "unblock goroutine",
+    "name": "#37"
+  },
+  {
+    "t": 4864299191,
+    "command": "sleep goroutine",
+    "name": "#37"
+  },
+  {
+    "t": 4864302106,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 4864304785,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 4965490347,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 4965493286,
+    "command": "unblock goroutine",
+    "name": "#37"
+  },
+  {
+    "t": 4965501037,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 4965513671,
+    "command": "unblock goroutine",
+    "name": "#37"
+  },
+  {
+    "t": 4965516374,
+    "command": "send to channel",
+    "from": "#37",
+    "to": "#1",
+    "ch": "#4",
+    "value": "45",
+    "duration": 14293
+  },
+  {
+    "t": 4965524409,
+    "command": "block goroutine",
+    "name": "#37"
+  },
+  {
+    "t": 4965529861,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 4965536261,
+    "command": "sleep goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 4965544534,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 4965548634,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 5016787887,
+    "command": "unblock goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 5016790091,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 5016796064,
+    "command": "block goroutine",
+    "name": "#20"
+  },
+  {
+    "t": 5016809978,
+    "command": "unblock goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 5016833492,
+    "command": "block goroutine",
+    "name": "#1"
+  },
+  {
+    "t": 5016833502,
+    "command": "stop goroutine",
+    "name": "#1"
+  }
+];
 
 	window.samples.pingpong100 = {
 
 		initialize: function(canvas, options) {
 			var instance = { active: false };
 			var params = {
-				width: 1200,
-				height: 700,
 				camera: "perspective",
 				allCaps: false,
 				speed: 1.4,
-				angle: 5,
+				angle: 10,
 				zoom: 1.0,
 				cameraPos: {x: 120, y: 60, z: 120}
 			};

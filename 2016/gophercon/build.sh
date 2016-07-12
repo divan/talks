@@ -1,4 +1,4 @@
 #!/bin/bash
 
-jade -P index.jade
+jade -P .
 exit $?

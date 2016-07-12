@@ -1,12 +1,12 @@
 func main() {
 	var Ball int
 	table := make(chan int)
-	for i := 0; i < 100; i++ {
+	for i := 0; i < 36; i++ {
 		go player(table)
 	}
 
 	table <- Ball
-	time.Sleep(3 * time.Second)
+	time.Sleep(1 * time.Second)
 	<-table
 }
 

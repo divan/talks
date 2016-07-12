@@ -920,13 +920,11 @@ var data = [
 		initialize: function(canvas, options) {
 			var instance = { active: false };
 			var params = {
-				width: 900,
-				height: 600,
 				camera: "perspective",
 				allCaps: true,
-				speed: 1.0,
-				angle: 60,
-				zoom: 1.1,
+				speed: 1.8,
+				angle: 120,
+				zoom: 1.2,
 				cameraPos: {x: 120, y: 60, z: 120}
 			};
 			initScene(canvas, options, instance, data, params);

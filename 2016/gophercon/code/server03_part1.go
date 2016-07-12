@@ -1,5 +1,5 @@
 func handler(c net.Conn, ch chan string) {
-	ch <- c.RemoteAddr().String()
+	ch <- 11
 	time.Sleep(100 * time.Millisecond)
 	c.Write([]byte("ok"))
 	c.Close()
@@ -14,5 +14,5 @@ func main() {
 
 	go pool(ch, 4)
 	go server(l, ch)
-	time.Sleep(2 * time.Second)
+	select{}
 }

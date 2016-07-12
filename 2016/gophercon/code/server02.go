@@ -6,7 +6,7 @@ import (
 )
 
 func handler(c net.Conn, ch chan string) {
-	ch <- c.RemoteAddr().String()
+	ch <- 11
 	c.Write([]byte("ok"))
 	c.Close()
 }

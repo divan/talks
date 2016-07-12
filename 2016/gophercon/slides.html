@@ -1,366 +1,439 @@
-<div class="slides"><section><br/><h1>Visualizing Concurrency in Go</h1><br/><h5>GopherCon, July 13, 2016</h5><h5>Ivan Danyliuk, Typeform</h5></section><section><canvas data-sample="pingpong01_full" style="display:inline"></canvas></section><section><h3>Ping-pong #3</h3><pre><code class="golang">func main() {
-	var Ball int
-	table := make(chan int)
-	go player(table)
-	go player(table)
-	go player(table)
 
-	table <- Ball
-	time.Sleep(2 * time.Second)
-	<-table
-}
+<div class="slides">
+  <section><br/><br/><br/>
+    <h1>Visualizing Concurrency in Go</h1>
+    <h5>GopherCon, July 11, 2016</h5>
+    <h5>Ivan Danyliuk, Typeform</h5>
+  </section>
+  <section>
+    <h3>Number forms</h3><img src="images/numberforms.png" width="70%"/>
+  </section>
+  <section>
+    <h3>Visualizations</h3><img src="images/visuals.png" width="90%"/>
+  </section>
+  <section><br/><br/><br/><br/>
+    <h1>How do you see</h1>
+    <h1>concurrency?</h1>
+  </section>
+  <section><br/><br/><img src="images/cortex.png" width="90%"/></section>
+  <section><br/><br/><br/>
+    <h1>Introducing</h1>
+    <h1>GoTrace tool</h1>
+  </section>
+  <section>
+    <h3>Hello, world!</h3>
+    <pre><!-- HTML generated using hilite.me --><div style="background: #000000; overflow:auto;width:auto;border: none; border-width: 0px; padding: 0em; background: #111;"><pre style="margin: 0; line-height: 125%"><span style="color: #cd00cd">package</span> <span style="color: #cccccc">main</span>
 
-func player(table chan int) {
-	for {
-		ball := <-table
-		ball++
-		time.Sleep(100e6)
-		table <- ball
-	}
-}
-</code></pre></section><section><canvas data-sample="pingpong03" style="display:inline"></canvas></section><section><h3>Ping-pong #100</h3><pre><code class="golang">func main() {
-	var Ball int
-	table := make(chan int)
-	for i := 0; i < 100; i++ {
-		go player(table)
-	}
+<span style="color: #00cd00">func</span> <span style="color: #cccccc">main()</span> <span style="color: #cccccc">{</span>
+    <span style="color: #cccccc">ch</span> <span style="color: #3399cc">:=</span> <span style="color: #cd00cd">make</span><span style="color: #cccccc">(</span><span style="color: #00cd00">chan</span> <span style="color: #00cd00">int</span><span style="color: #cccccc">)</span>
 
-	table <- Ball
-	time.Sleep(3 * time.Second)
-	<-table
-}
+    <span style="color: #cdcd00">go</span> <span style="color: #00cd00">func</span><span style="color: #cccccc">()</span> <span style="color: #cccccc">{</span>
+        <span style="color: #cccccc">ch</span> <span style="color: #3399cc">&lt;-</span> <span style="color: #cd00cd">42</span>
+    <span style="color: #cccccc">}()</span>
 
-func player(table chan int) {
-	for {
-		ball := <-table
-		ball++
-		time.Sleep(100 * time.Millisecond)
-		table <- ball
-	}
-}
-</code></pre></section><section><canvas data-sample="pingpong100" style="display:inline"></canvas></section><section><h3>Fan-in</h3><pre><code class="golang">package main
+    <span style="color: #3399cc">&lt;-</span><span style="color: #cccccc">ch</span>
+<span style="color: #cccccc">}</span>
+</pre></div>
 
-import (
-	"fmt"
-	"time"
-)
+</pre>
+  </section>
+    <section>
+      <h3>Hello, world!</h3>
+      <canvas data-sample="hello01" style="display:inline"></canvas>
+    </section>
+  <section>
+    <h3>Timer</h3>
+    <pre><!-- HTML generated using hilite.me --><div style="background: #000000; overflow:auto;width:auto;border: none; border-width: 0px; padding: 0em; background: #111;"><pre style="margin: 0; line-height: 125%"><span style="color: #00cd00">func</span> <span style="color: #cccccc">tick(d</span> <span style="color: #cccccc">time.Duration)</span> <span style="color: #3399cc">&lt;-</span><span style="color: #00cd00">chan</span> <span style="color: #00cd00">int</span> <span style="color: #cccccc">{</span>
+	<span style="color: #cccccc">c</span> <span style="color: #3399cc">:=</span> <span style="color: #cd00cd">make</span><span style="color: #cccccc">(</span><span style="color: #00cd00">chan</span> <span style="color: #00cd00">int</span><span style="color: #cccccc">)</span>
+	<span style="color: #cdcd00">go</span> <span style="color: #00cd00">func</span><span style="color: #cccccc">()</span> <span style="color: #cccccc">{</span>
+		<span style="color: #cccccc">time.Sleep(d)</span>
+		<span style="color: #cccccc">c</span> <span style="color: #3399cc">&lt;-</span> <span style="color: #cd00cd">1</span>
+	<span style="color: #cccccc">}()</span>
+	<span style="color: #cdcd00">return</span> <span style="color: #cccccc">c</span>
+<span style="color: #cccccc">}</span>
 
-func producer1(ch chan int) {
-	var i int
-	for {
-		time.Sleep(100 * time.Millisecond)
-		ch <- i
-		i++
-	}
-}
+<span style="color: #00cd00">func</span> <span style="color: #cccccc">main()</span> <span style="color: #cccccc">{</span>
+	<span style="color: #cdcd00">for</span> <span style="color: #cccccc">i</span> <span style="color: #3399cc">:=</span> <span style="color: #cd00cd">0</span><span style="color: #cccccc">;</span> <span style="color: #cccccc">i</span> <span style="color: #cccccc">&lt;</span> <span style="color: #cd00cd">24</span><span style="color: #cccccc">;</span> <span style="color: #cccccc">i</span><span style="color: #3399cc">++</span> <span style="color: #cccccc">{</span>
+		<span style="color: #cccccc">c</span> <span style="color: #3399cc">:=</span> <span style="color: #cccccc">tick(</span><span style="color: #cd00cd">100</span> <span style="color: #3399cc">*</span> <span style="color: #cccccc">time.Millisecond)</span>
+		<span style="color: #3399cc">&lt;-</span><span style="color: #cccccc">c</span>
+	<span style="color: #cccccc">}</span>
+<span style="color: #cccccc">}</span>
+</pre></div>
 
-func producer2(ch chan int) {
-	var i int
-	for {
-		time.Sleep(300 * time.Millisecond)
-		ch <- i
-		i++
-	}
-}
+</pre>
+  </section>
+    <section>
+      <h3>Timer</h3>
+      <canvas data-sample="timer01" style="display:inline"></canvas>
+    </section>
+  <section>
+    <h3>Ping-pong</h3>
+    <pre><!-- HTML generated using hilite.me --><div style="background: #000000; overflow:auto;width:auto;border: none; border-width: 0px; padding: 0em; background: #111;"><pre style="margin: 0; line-height: 125%"><span style="color: #00cd00">func</span> <span style="color: #cccccc">main()</span> <span style="color: #cccccc">{</span>
+	<span style="color: #00cd00">var</span> <span style="color: #cccccc">Ball</span> <span style="color: #00cd00">int</span>
+	<span style="color: #cccccc">table</span> <span style="color: #3399cc">:=</span> <span style="color: #cd00cd">make</span><span style="color: #cccccc">(</span><span style="color: #00cd00">chan</span> <span style="color: #00cd00">int</span><span style="color: #cccccc">)</span>
+	<span style="color: #cdcd00">go</span> <span style="color: #cccccc">player(table)</span>
+	<span style="color: #cdcd00">go</span> <span style="color: #cccccc">player(table)</span>
 
-func reader(out chan int) {
-	for {
-		x := <-out
-		fmt.Println(x)
-	}
-}
+	<span style="color: #cccccc">table</span> <span style="color: #3399cc">&lt;-</span> <span style="color: #cccccc">Ball</span>
+	<span style="color: #cccccc">time.Sleep(</span><span style="color: #cd00cd">1</span> <span style="color: #3399cc">*</span> <span style="color: #cccccc">time.Second)</span>
+	<span style="color: #3399cc">&lt;-</span><span style="color: #cccccc">table</span>
+<span style="color: #cccccc">}</span>
 
-func main() {
-	ch := make(chan int)
-	go producer1(ch)
-	go producer2(ch)
-	out := make(chan int)
-	go reader(out)
-	for {
-		i := <-ch
-		out <- i
-		if i == 20 {
-			return
-		}
-	}
-}
-</code></pre></section><section><canvas data-sample="fanin" style="display:inline"></canvas></section><section><h3>Servers</h3><pre><code class="golang">func handler(c net.Conn) {
-	c.Write([]byte("ok"))
-	c.Close()
-}
+<span style="color: #00cd00">func</span> <span style="color: #cccccc">player(table</span> <span style="color: #00cd00">chan</span> <span style="color: #00cd00">int</span><span style="color: #cccccc">)</span> <span style="color: #cccccc">{</span>
+	<span style="color: #cdcd00">for</span> <span style="color: #cccccc">{</span>
+		<span style="color: #cccccc">ball</span> <span style="color: #3399cc">:=</span> <span style="color: #3399cc">&lt;-</span><span style="color: #cccccc">table</span>
+		<span style="color: #cccccc">ball</span><span style="color: #3399cc">++</span>
+		<span style="color: #cccccc">time.Sleep(</span><span style="color: #cd00cd">100</span> <span style="color: #3399cc">*</span> <span style="color: #cccccc">time.Millisecond)</span>
+		<span style="color: #cccccc">table</span> <span style="color: #3399cc">&lt;-</span> <span style="color: #cccccc">ball</span>
+	<span style="color: #cccccc">}</span>
+<span style="color: #cccccc">}</span>
+</pre></div>
+</pre>
+  </section>
+  <section>
+    <h3>Ping-pong</h3><img src="images/tabletennis.gif"/>
+  </section>
+    <section>
+      <h3>Ping-pong</h3>
+      <canvas data-sample="pingpong01" style="display:inline"></canvas>
+    </section>
+  <section transition="none">
+    <h3>Ping-pong #3</h3>
+    <pre><!-- HTML generated using hilite.me --><div style="background: #000000; overflow:auto;width:auto;border: none; border-width: 0px; padding: 0em; background: #111;"><pre style="margin: 0; line-height: 125%"> <span style="opacity: 0.5"> <span style="color: #00cd00">func</span> <span style="color: #cccccc">main()</span> <span style="color: #cccccc">{</span>
+	<span style="color: #00cd00">var</span> <span style="color: #cccccc">Ball</span> <span style="color: #00cd00">int</span>
+	<span style="color: #cccccc">table</span> <span style="color: #3399cc">:=</span> <span style="color: #cd00cd">make</span><span style="color: #cccccc">(</span><span style="color: #00cd00">chan</span> <span style="color: #00cd00">int</span><span style="color: #cccccc">)</span> </span>
+	<span style="opacity: 1">
+	<span style="color: #cdcd00">go</span> <span style="color: #cccccc">player(table)</span>
+	<span style="color: #cdcd00">go</span> <span style="color: #cccccc">player(table)</span>
+	<span style="color: #cdcd00">go</span> <span style="color: #cccccc">player(table)</span>
+	</span>
+	<span style="opacity: 0.5"><span style="color: #cccccc">table</span> <span style="color: #3399cc">&lt;-</span> <span style="color: #cccccc">Ball</span>
+	<span style="color: #cccccc">time.Sleep(</span><span style="color: #cd00cd">1</span> <span style="color: #3399cc">*</span> <span style="color: #cccccc">time.Second)</span>
+	<span style="color: #3399cc">&lt;-</span><span style="color: #cccccc">table</span>
+<span style="color: #cccccc">}</span>
 
-func main() {
-	l, err := net.Listen("tcp", ":5000")
-	if err != nil {
-		panic(err)
-	}
-	for {
-		c, err := l.Accept()
-		if err != nil {
-			continue
-		}
-		go handler(c)
-	}
-}
-</code></pre></section><section><canvas data-sample="server01" style="display:inline"></canvas></section><section><h3>Servers</h3><pre style="width: 43%; float: left; padding: 5px"><code class="golang">package main
+<span style="color: #00cd00">func</span> <span style="color: #cccccc">player(table</span> <span style="color: #00cd00">chan</span> <span style="color: #00cd00">int</span><span style="color: #cccccc">)</span> <span style="color: #cccccc">{</span>
+	<span style="color: #cdcd00">for</span> <span style="color: #cccccc">{</span>
+		<span style="color: #cccccc">ball</span> <span style="color: #3399cc">:=</span> <span style="color: #3399cc">&lt;-</span><span style="color: #cccccc">table</span>
+		<span style="color: #cccccc">ball</span><span style="color: #3399cc">++</span>
+		<span style="color: #cccccc">time.Sleep(</span><span style="color: #cd00cd">100</span> <span style="color: #3399cc">*</span> <span style="color: #cccccc">time.Millisecond)</span>
+		<span style="color: #cccccc">table</span> <span style="color: #3399cc">&lt;-</span> <span style="color: #cccccc">ball</span>
+	<span style="color: #cccccc">}</span>
+<span style="color: #cccccc">}</span> </span> </pre></div>
+</pre>
+  </section>
+    <section>
+      <h3>Ping-pong #3</h3>
+      <canvas data-sample="pingpong03" style="display:inline"></canvas>
+    </section>
+  <section>
+    <h3>Ping-pong #36</h3>
+    <pre><!-- HTML generated using hilite.me --><div style="background: #000000; overflow:auto;width:auto;border: none; border-width: 0px; padding: 0em; background: #111;"><pre style="margin: 0; line-height: 125%"><span style="opacity: 0.5"><span style="color: #00cd00">func</span> <span style="color: #cccccc">main()</span> <span style="color: #cccccc">{</span>
+	<span style="color: #00cd00">var</span> <span style="color: #cccccc">Ball</span> <span style="color: #00cd00">int</span>
+	<span style="color: #cccccc">table</span> <span style="color: #3399cc">:=</span> <span style="color: #cd00cd">make</span><span style="color: #cccccc">(</span><span style="color: #00cd00">chan</span> <span style="color: #00cd00">int</span><span style="color: #cccccc">)</span></span>
 
-import (
-	"fmt"
-	"net"
-	"time"
-)
+	<span style="opacity: 1"><span style="color: #cdcd00">for</span> <span style="color: #cccccc">i</span> <span style="color: #3399cc">:=</span> <span style="color: #cd00cd">0</span><span style="color: #cccccc">;</span> <span style="color: #cccccc">i</span> <span style="color: #cccccc">&lt;</span> <span style="color: #cd00cd">36</span><span style="color: #cccccc">;</span> <span style="color: #cccccc">i</span><span style="color: #3399cc">++</span> <span style="color: #cccccc">{</span>
+		<span style="color: #cdcd00">go</span> <span style="color: #cccccc">player(table)</span>
+	<span style="color: #cccccc">}</span></span>
 
-func main() {
-	l, err := net.Listen("tcp", ":5000")
-	if err != nil {
-		panic(err)
-	}
+	<span style="opacity:0.5"><span style="color: #cccccc">table</span> <span style="color: #3399cc">&lt;-</span> <span style="color: #cccccc">Ball</span>
+	<span style="color: #cccccc">time.Sleep(</span><span style="color: #cd00cd">1</span> <span style="color: #3399cc">*</span> <span style="color: #cccccc">time.Second)</span>
+	<span style="color: #3399cc">&lt;-</span><span style="color: #cccccc">table</span>
+<span style="color: #cccccc">}</span>
 
-	ch := make(chan string)
+<span style="color: #00cd00">func</span> <span style="color: #cccccc">player(table</span> <span style="color: #00cd00">chan</span> <span style="color: #00cd00">int</span><span style="color: #cccccc">)</span> <span style="color: #cccccc">{</span>
+	<span style="color: #cdcd00">for</span> <span style="color: #cccccc">{</span>
+		<span style="color: #cccccc">ball</span> <span style="color: #3399cc">:=</span> <span style="color: #3399cc">&lt;-</span><span style="color: #cccccc">table</span>
+		<span style="color: #cccccc">ball</span><span style="color: #3399cc">++</span>
+		<span style="color: #cccccc">time.Sleep(</span><span style="color: #cd00cd">100</span> <span style="color: #3399cc">*</span> <span style="color: #cccccc">time.Millisecond)</span>
+		<span style="color: #cccccc">table</span> <span style="color: #3399cc">&lt;-</span> <span style="color: #cccccc">ball</span>
+	<span style="color: #cccccc">}</span>
+<span style="color: #cccccc">}</span></span>
+</pre></div>
+</pre>
+  </section>
+    <section>
+      <h3>Ping-pong #36</h3>
+      <canvas data-sample="pingpong36" style="display:inline"></canvas>
+    </section>
+  <section><br/><br/><br/><br/><br/>
+    <h1>Messaging patterns</h1>
+  </section>
+  <section>
+    <h3>Fan-in</h3>
+    <pre><!-- HTML generated using hilite.me --><div style="background: #000000; overflow:auto;width:auto;border: none; border-width: 0px; padding: 0em; background: #111;"><pre style="margin: 0; line-height: 125%"><span style="color: #00cd00">func</span> <span style="color: #cccccc">producer(ch</span> <span style="color: #00cd00">chan</span> <span style="color: #00cd00">int</span><span style="color: #cccccc">,</span> <span style="color: #cccccc">d</span> <span style="color: #cccccc">time.Duration)</span> <span style="color: #cccccc">{</span>
+	<span style="color: #cdcd00">for</span> <span style="color: #cccccc">{</span>
+		<span style="color: #cccccc">ch</span> <span style="color: #3399cc">&lt;-</span> <span style="color: #cccccc">i</span>
+		<span style="color: #cccccc">time.Sleep(d)</span>
+	<span style="color: #cccccc">}</span>
+<span style="color: #cccccc">}</span>
 
-	go logger(ch)
-	go server(l, ch)
+<span style="color: #00cd00">func</span> <span style="color: #cccccc">reader(out</span> <span style="color: #00cd00">chan</span> <span style="color: #00cd00">int</span><span style="color: #cccccc">)</span> <span style="color: #cccccc">{</span>
+	<span style="color: #cdcd00">for</span> <span style="color: #cccccc">{</span> <span style="color: #3399cc">&lt;-</span><span style="color: #cccccc">out</span> <span style="color: #cccccc">}</span>
+<span style="color: #cccccc">}</span>
 
-	time.Sleep(10 * time.Second)
-}
-</code></pre><pre style="width: 55%; float: right; padding: 5px"><code class="golang">func handler(c net.Conn, ch chan string) {
-	ch <- c.RemoteAddr().String()
-	c.Write([]byte("ok"))
-	c.Close()
-}
+<span style="color: #00cd00">func</span> <span style="color: #cccccc">main()</span> <span style="color: #cccccc">{</span>
+	<span style="color: #cccccc">ch,</span> <span style="color: #cccccc">out</span> <span style="color: #3399cc">:=</span> <span style="color: #cd00cd">make</span><span style="color: #cccccc">(</span><span style="color: #00cd00">chan</span> <span style="color: #00cd00">int</span><span style="color: #cccccc">),</span> <span style="color: #cd00cd">make</span><span style="color: #cccccc">(</span><span style="color: #00cd00">chan</span> <span style="color: #00cd00">int</span><span style="color: #cccccc">)</span>
+	<span style="color: #cdcd00">go</span> <span style="color: #cccccc">producer(ch,</span> <span style="color: #cd00cd">100</span><span style="color: #3399cc">*</span><span style="color: #cccccc">time.Millisecond)</span>
+	<span style="color: #cdcd00">go</span> <span style="color: #cccccc">producer(ch,</span> <span style="color: #cd00cd">300</span><span style="color: #3399cc">*</span><span style="color: #cccccc">time.Millisecond)</span>
+	<span style="color: #cdcd00">go</span> <span style="color: #cccccc">reader(out)</span>
+	<span style="color: #cdcd00">for</span> <span style="color: #cccccc">{</span> <span style="color: #cccccc">out</span> <span style="color: #3399cc">&lt;-</span> <span style="color: #3399cc">&lt;-</span><span style="color: #cccccc">ch</span> <span style="color: #cccccc">}</span>
+<span style="color: #cccccc">}</span>
+</pre></div>
 
-func logger(ch chan string) {
-	for {
-		fmt.Println(<-ch)
-	}
-}
+</pre>
+  </section>
+    <section>
+      <h3>Fan in</h3>
+      <canvas data-sample="fanin" style="display:inline"></canvas>
+    </section>
+  <section>
+    <h3>Servers</h3>
+    <pre><!-- HTML generated using hilite.me --><div style="background: #000000; overflow:auto;width:auto;border: none; border-width: 0px; padding: 0em; background: #111;"><pre style="margin: 0; line-height: 125%"><span style="color: #00cd00">func</span> <span style="color: #cccccc">handler(c</span> <span style="color: #cccccc">net.Conn)</span> <span style="color: #cccccc">{</span>
+	<span style="color: #cccccc">c.Write([]</span><span style="color: #cd00cd">byte</span><span style="color: #cccccc">(</span><span style="color: #cd0000">&quot;ok&quot;</span><span style="color: #cccccc">))</span>
+	<span style="color: #cccccc">c.Close()</span>
+<span style="color: #cccccc">}</span>
 
-func server(l net.Listener, ch chan string) {
-	for {
-		c, err := l.Accept()
-		if err != nil {
-			continue
-		}
-		go handler(c, ch)
-	}
-}
-</code></pre></section><section><canvas data-sample="server02" style="display:inline"></canvas></section><section><h3>Workers</h3><pre style="width: 40%; float: left; padding: 5px"><code class="golang">func main() {
-	var wg sync.WaitGroup
-	wg.Add(36)
-	go pool(&wg, 36)
-	wg.Wait()
-}
+<span style="color: #00cd00">func</span> <span style="color: #cccccc">main()</span> <span style="color: #cccccc">{</span>
+	<span style="color: #cccccc">l,</span> <span style="color: #cccccc">err</span> <span style="color: #3399cc">:=</span> <span style="color: #cccccc">net.Listen(</span><span style="color: #cd0000">&quot;tcp&quot;</span><span style="color: #cccccc">,</span> <span style="color: #cd0000">&quot;:5000&quot;</span><span style="color: #cccccc">)</span>
+	<span style="color: #cdcd00">if</span> <span style="color: #cccccc">err</span> <span style="color: #3399cc">!=</span> <span style="color: #cdcd00">nil</span> <span style="color: #cccccc">{</span>
+		<span style="color: #cd00cd">panic</span><span style="color: #cccccc">(err)</span>
+	<span style="color: #cccccc">}</span>
+	<span style="color: #cdcd00">for</span> <span style="color: #cccccc">{</span>
+		<span style="color: #cccccc">c,</span> <span style="color: #cccccc">err</span> <span style="color: #3399cc">:=</span> <span style="color: #cccccc">l.Accept()</span>
+		<span style="color: #cdcd00">if</span> <span style="color: #cccccc">err</span> <span style="color: #3399cc">!=</span> <span style="color: #cdcd00">nil</span> <span style="color: #cccccc">{</span>
+			<span style="color: #cdcd00">continue</span>
+		<span style="color: #cccccc">}</span>
+		<span style="color: #cdcd00">go</span> <span style="color: #cccccc">handler(c)</span>
+	<span style="color: #cccccc">}</span>
+<span style="color: #cccccc">}</span>
+</pre></div>
 
-func pool(wg *sync.WaitGroup, n int) {
-	tasks := make(chan int)
-	for i := 0; i < n; i++ {
-		go worker(tasks, wg)
-	}
-	for i := 0; i < 50; i++ {
-		tasks <- i
-	}
-	close(tasks)
-}
-</code></pre><pre style="width: 55%; float: right; padding: 5px"><code class="golang">func worker(tasks <-chan int, wg *sync.WaitGroup) {
-	defer wg.Done()
-	for {
-		task, ok := <-tasks
-		if !ok {
-			return
-		}
-		d := time.Duration(task) * time.Millisecond
-		time.Sleep(d)
-		fmt.Println("processing task", task)
-	}
-}
-</code></pre></section><section><canvas data-sample="workers01" style="display:inline"></canvas></section><section><h3>Workers</h3><pre style="width: 40%; float: left; padding: 5px"><code class="golang">func main() {
-	var wg sync.WaitGroup
-	wg.Add(36)
-	go pool(&wg, 36)
-	wg.Wait()
-}
+</pre>
+  </section>
+    <section>
+      <h3>Servers</h3>
+      <canvas data-sample="server01" style="display:inline"></canvas>
+    </section>
+  <section>
+    <h3>Servers</h3>
+    <pre style="width: 55%; float: left; padding: 5px"><!-- HTML generated using hilite.me --><div style="background: #000000; overflow:auto;width:auto;border: none; border-width: 0px; padding: 0em; background: #111;"><pre style="margin: 0; line-height: 125%"><span style="color: #00cd00">func</span> <span style="color: #cccccc">handler(c</span> <span style="color: #cccccc">net.Conn,</span> <span style="color: #cccccc">ch</span> <span style="color: #00cd00">chan</span> <span style="color: #00cd00">string</span><span style="color: #cccccc">)</span> <span style="color: #cccccc">{</span>
+	<span style="color: #cccccc">ch</span> <span style="color: #3399cc">&lt;-</span> <span style="color: #cd00cd">11</span> <span style="color: #000080">// something</span>
+	<span style="color: #cccccc">c.Write([]</span><span style="color: #cd00cd">byte</span><span style="color: #cccccc">(</span><span style="color: #cd0000">&quot;ok&quot;</span><span style="color: #cccccc">))</span>
+	<span style="color: #cccccc">c.Close()</span>
+<span style="color: #cccccc">}</span>
 
-func pool(wg *sync.WaitGroup, n int) {
-	tasks := make(chan int)
-	for i := 0; i < n; i++ {
-		go worker(tasks, wg)
-	}
-	for i := 0; i < 50; i++ {
-		tasks <- i
-	}
-	close(tasks)
-}
-</code></pre><pre style="width: 55%; float: right; padding: 5px"><code class="golang">func worker(tasks <-chan int, wg *sync.WaitGroup) {
-	defer wg.Done()
-	for {
-		task, ok := <-tasks
-		if !ok {
-			return
-		}
-		d := time.Duration(task) * time.Millisecond
-		time.Sleep(d)
-		fmt.Println("processing task", task)
-	}
-}
-</code></pre></section><section><canvas data-sample="workers02" style="display:inline"></canvas></section><section><h3>Server+Worker</h3><pre style="width: 43%; float: left; padding: 5px"><code class="golang">func handler(c net.Conn, ch chan string) {
-	ch <- c.RemoteAddr().String()
-	time.Sleep(100 * time.Millisecond)
-	c.Write([]byte("ok"))
-	c.Close()
-}
+<span style="opacity: 0.5"><span style="color: #00cd00">func</span> <span style="color: #cccccc">main()</span> <span style="color: #cccccc">{</span>
+	<span style="color: #cccccc">l,</span> <span style="color: #cccccc">err</span> <span style="color: #3399cc">:=</span> <span style="color: #cccccc">net.Listen(</span><span style="color: #cd0000">&quot;tcp&quot;</span><span style="color: #cccccc">,</span> <span style="color: #cd0000">&quot;:5000&quot;</span><span style="color: #cccccc">)</span>
+	<span style="color: #cdcd00">if</span> <span style="color: #cccccc">err</span> <span style="color: #3399cc">!=</span> <span style="color: #cdcd00">nil</span> <span style="color: #cccccc">{</span>
+		<span style="color: #cd00cd">panic</span><span style="color: #cccccc">(err)</span>
+	<span style="color: #cccccc">}</span></span>
+	<span style="color: #cccccc">ch</span> <span style="color: #3399cc">:=</span> <span style="color: #cd00cd">make</span><span style="color: #cccccc">(</span><span style="color: #00cd00">chan</span> <span style="color: #00cd00">string</span><span style="color: #cccccc">)</span>
+	<span style="color: #cdcd00">go</span> <span style="color: #cccccc">logger(ch)</span>
+	<span style="opacity: 0.5"><span style="color: #cdcd00">go</span> <span style="color: #cccccc">server(l,</span> <span style="color: #cccccc">ch)</span>
+	<span style="color: #cdcd00">select</span><span style="color: #cccccc">{}</span>
+<span style="color: #cccccc">}</span></span>
+</pre></div>
 
-func main() {
-	l, err := net.Listen("tcp", ":5000")
-	if err != nil {
-		panic(err)
-	}
-	ch := make(chan string)
+</pre>
+    <pre style="width: 43%; float: right; padding: 5px"><!-- HTML generated using hilite.me --><div style="background: #000000; overflow:auto;width:auto;border: none; border-width: 0px; padding: 0em; background: #111;"><pre style="margin: 0; line-height: 125%"><span style="color: #00cd00">func</span> <span style="color: #cccccc">logger(ch</span> <span style="color: #00cd00">chan</span> <span style="color: #00cd00">int</span><span style="color: #cccccc">)</span> <span style="color: #cccccc">{</span>
+	<span style="color: #cdcd00">for</span> <span style="color: #cccccc">{</span>
+		<span style="color: #cccccc">fmt.Println(</span><span style="color: #3399cc">&lt;-</span><span style="color: #cccccc">ch)</span>
+	<span style="color: #cccccc">}</span>
+<span style="color: #cccccc">}</span>
 
-	go pool(ch, 4)
-	go server(l, ch)
-	time.Sleep(2 * time.Second)
-}
-</code></pre><pre style="width: 55%; float: right; padding: 5px"><code class="golang">func worker(wch chan int, results chan int) {
-	for {
-		data := <-wch
-		results <- data
-	}
-}
+<span style="opacity: 0.5"><span style="color: #00cd00">func</span> <span style="color: #cccccc">server(l</span> <span style="color: #cccccc">net.Listener,</span>
+		<span style="color: #cccccc">ch</span> <span style="color: #00cd00">chan</span> <span style="color: #00cd00">int</span><span style="color: #cccccc">)</span> <span style="color: #cccccc">{</span>
+	<span style="color: #cdcd00">for</span> <span style="color: #cccccc">{</span>
+		<span style="color: #cccccc">c,</span> <span style="color: #cccccc">err</span> <span style="color: #3399cc">:=</span> <span style="color: #cccccc">l.Accept()</span>
+		<span style="color: #cdcd00">if</span> <span style="color: #cccccc">err</span> <span style="color: #3399cc">!=</span> <span style="color: #cdcd00">nil</span> <span style="color: #cccccc">{</span>
+			<span style="color: #cdcd00">continue</span>
+		<span style="color: #cccccc">}</span>
+		<span style="color: #cdcd00">go</span> <span style="color: #cccccc">handler(c,</span> <span style="color: #cccccc">ch)</span>
+	<span style="color: #cccccc">}</span>
+<span style="color: #cccccc">}</span></span>
+</pre></div>
 
-func parse(results chan int) {
-	for { <-results }
-}
+</pre>
+  </section>
+    <section>
+      <h3>Servers</h3>
+      <canvas data-sample="server02" style="display:inline"></canvas>
+    </section>
+  <section>
+    <h3>Workers / Fan-out</h3>
+    <pre style="width: 40%; float: left; padding: 5px"><!-- HTML generated using hilite.me --><div style="background: #000000; overflow:auto;width:auto;border: none; border-width: 0px; padding: 0em; background: #111;"><pre style="margin: 0; line-height: 125%"><span style="color: #00cd00">func</span> <span style="color: #cccccc">main()</span> <span style="color: #cccccc">{</span>
+	<span style="color: #00cd00">var</span> <span style="color: #cccccc">wg</span> <span style="color: #cccccc">sync.WaitGroup</span>
+	<span style="color: #cccccc">wg.Add(</span><span style="color: #cd00cd">36</span><span style="color: #cccccc">)</span>
+	<span style="color: #cdcd00">go</span> <span style="color: #cccccc">pool(</span><span style="color: #3399cc">&amp;</span><span style="color: #cccccc">wg,</span> <span style="color: #cd00cd">36</span><span style="color: #cccccc">)</span>
+	<span style="color: #cccccc">wg.Wait()</span>
+<span style="color: #cccccc">}</span>
 
-func pool(ch chan string, n int) {
-	wch := make(chan int)
-	results := make(chan int)
-	for i := 0; i < n; i++ {
-		go worker(wch, results)
-	}
-	go parse(results)
-	for {
-		addr := <-ch
-		wch <- 42*len(addr)
-	}
-}
-</code></pre></section><section><canvas data-sample="server03" style="display:inline"></canvas></section><section><h3>Concurrent prime sieve</h3><pre style="width: 43%; float: left; padding: 5px"><code class="golang">package main
+<span style="color: #00cd00">func</span> <span style="color: #cccccc">pool(wg</span> <span style="color: #3399cc">*</span><span style="color: #cccccc">sync.WaitGroup,</span> <span style="color: #cccccc">n</span> <span style="color: #00cd00">int</span><span style="color: #cccccc">)</span> <span style="color: #cccccc">{</span>
+	<span style="color: #cccccc">tasks</span> <span style="color: #3399cc">:=</span> <span style="color: #cd00cd">make</span><span style="color: #cccccc">(</span><span style="color: #00cd00">chan</span> <span style="color: #00cd00">int</span><span style="color: #cccccc">)</span>
+	<span style="color: #cdcd00">for</span> <span style="color: #cccccc">i</span> <span style="color: #3399cc">:=</span> <span style="color: #cd00cd">0</span><span style="color: #cccccc">;</span> <span style="color: #cccccc">i</span> <span style="color: #cccccc">&lt;</span> <span style="color: #cccccc">n;</span> <span style="color: #cccccc">i</span><span style="color: #3399cc">++</span> <span style="color: #cccccc">{</span>
+		<span style="color: #cdcd00">go</span> <span style="color: #cccccc">worker(tasks,</span> <span style="color: #cccccc">wg)</span>
+	<span style="color: #cccccc">}</span>
+	<span style="color: #cdcd00">for</span> <span style="color: #cccccc">i</span> <span style="color: #3399cc">:=</span> <span style="color: #cd00cd">0</span><span style="color: #cccccc">;</span> <span style="color: #cccccc">i</span> <span style="color: #cccccc">&lt;</span> <span style="color: #cd00cd">50</span><span style="color: #cccccc">;</span> <span style="color: #cccccc">i</span><span style="color: #3399cc">++</span> <span style="color: #cccccc">{</span>
+		<span style="color: #cccccc">tasks</span> <span style="color: #3399cc">&lt;-</span> <span style="color: #cccccc">i</span>
+	<span style="color: #cccccc">}</span>
+	<span style="color: #cd00cd">close</span><span style="color: #cccccc">(tasks)</span>
+<span style="color: #cccccc">}</span>
+</pre></div>
 
-import "fmt"
+</pre>
+    <pre style="width: 55%; float: right; padding: 5px"><!-- HTML generated using hilite.me --><div style="background: #000000; overflow:auto;width:auto;border: none; border-width: 0px; padding: 0em; background: #111;"><pre style="margin: 0; line-height: 125%"><span style="color: #00cd00">func</span> <span style="color: #cccccc">worker(tasks</span> <span style="color: #3399cc">&lt;-</span><span style="color: #00cd00">chan</span> <span style="color: #00cd00">int</span><span style="color: #cccccc">,</span>
+		<span style="color: #cccccc">wg</span> <span style="color: #3399cc">*</span><span style="color: #cccccc">sync.WaitGroup)</span> <span style="color: #cccccc">{</span>
+	<span style="color: #cdcd00">defer</span> <span style="color: #cccccc">wg.Done()</span>
+	<span style="color: #cdcd00">for</span> <span style="color: #cccccc">{</span>
+		<span style="color: #cccccc">task,</span> <span style="color: #cccccc">ok</span> <span style="color: #3399cc">:=</span> <span style="color: #3399cc">&lt;-</span><span style="color: #cccccc">tasks</span>
+		<span style="color: #cdcd00">if</span> <span style="color: #cccccc">!ok</span> <span style="color: #cccccc">{</span>
+			<span style="color: #cdcd00">return</span>
+		<span style="color: #cccccc">}</span>
+		<span style="color: #cccccc">d</span> <span style="color: #3399cc">:=</span> <span style="color: #cccccc">time.Duration(task)</span> 
+			<span style="color: #3399cc">*</span> <span style="color: #cccccc">time.Millisecond</span>
+		<span style="color: #cccccc">time.Sleep(d)</span>
+		<span style="color: #cccccc">fmt.Println(</span><span style="color: #cd0000">&quot;processing task&quot;</span><span style="color: #cccccc">,</span> <span style="color: #cccccc">task)</span>
+	<span style="color: #cccccc">}</span>
+<span style="color: #cccccc">}</span>
+</pre></div>
 
-func main() {
-	ch := make(chan int)
-	go Generate(ch)
-	for i := 0; i < 10; i++ {
-		prime := <-ch
-		fmt.Println(prime)
-		out := make(chan int)
-		go Filter(ch, out, prime)
-		ch = out
-	}
-}
-</code></pre><pre style="width: 55%; float: right; padding: 5px"><code class="golang">func Generate(ch chan<- int) {
-	for i := 2; ; i++ {
-		ch <- i
-	}
-}
+</pre>
+  </section>
+    <section>
+      <h3>Workers</h3>
+      <canvas data-sample="workers01" style="display:inline"></canvas>
+    </section>
+    <section>
+      <h3>Subworkers</h3>
+      <canvas data-sample="workers02" style="display:inline"></canvas>
+    </section>
+    <section>
+      <h3>Server+Worker</h3>
+      <canvas data-sample="server03" style="display:inline"></canvas>
+    </section>
+  <section>
+    <h3>Concurrent prime sieve</h3>
+    <pre style="width: 43%; float: left; padding: 5px"><!-- HTML generated using hilite.me --><div style="background: #000000; overflow:auto;width:auto;border: none; border-width: 0px; padding: 0em; background: #111;"><pre style="margin: 0; line-height: 125%"><span style="color: #cd00cd">package</span> <span style="color: #cccccc">main</span>
 
-func Filter(ch <-chan int, out chan<- int, prime int) {
-	for {
-		i := <-ch
-		if i%prime != 0 {
-			out <- i
-		}
-	}
-}
-</code></pre></section><section><canvas data-sample="primesieve" style="display:inline"></canvas></section><section><h3>GOMAXPROCS</h3><img src="images/gomaxprocs.png"/></section><section><h3>GOMAXPROCS</h3><pre style="width: 43%; float: left; padding: 5px"><code class="golang">const workers = 24
+<span style="color: #cd00cd">import</span> <span style="color: #cd0000">&quot;fmt&quot;</span>
 
-func pool(in, out chan int) {
-	for i := 0; i < workers; i++ {
-		go worker(in, out)
-	}
-}
+<span style="color: #00cd00">func</span> <span style="color: #cccccc">main()</span> <span style="color: #cccccc">{</span>
+	<span style="color: #cccccc">ch</span> <span style="color: #3399cc">:=</span> <span style="color: #cd00cd">make</span><span style="color: #cccccc">(</span><span style="color: #00cd00">chan</span> <span style="color: #00cd00">int</span><span style="color: #cccccc">)</span>
+	<span style="color: #cdcd00">go</span> <span style="color: #cccccc">Generate(ch)</span>
+	<span style="color: #cdcd00">for</span> <span style="color: #cccccc">i</span> <span style="color: #3399cc">:=</span> <span style="color: #cd00cd">0</span><span style="color: #cccccc">;</span> <span style="color: #cccccc">i</span> <span style="color: #cccccc">&lt;</span> <span style="color: #cd00cd">10</span><span style="color: #cccccc">;</span> <span style="color: #cccccc">i</span><span style="color: #3399cc">++</span> <span style="color: #cccccc">{</span>
+		<span style="color: #cccccc">prime</span> <span style="color: #3399cc">:=</span> <span style="color: #3399cc">&lt;-</span><span style="color: #cccccc">ch</span>
+		<span style="color: #cccccc">fmt.Println(prime)</span>
+		<span style="color: #cccccc">out</span> <span style="color: #3399cc">:=</span> <span style="color: #cd00cd">make</span><span style="color: #cccccc">(</span><span style="color: #00cd00">chan</span> <span style="color: #00cd00">int</span><span style="color: #cccccc">)</span>
+		<span style="color: #cdcd00">go</span> <span style="color: #cccccc">Filter(ch,</span> <span style="color: #cccccc">out,</span> <span style="color: #cccccc">prime)</span>
+		<span style="color: #cccccc">ch</span> <span style="color: #cccccc">=</span> <span style="color: #cccccc">out</span>
+	<span style="color: #cccccc">}</span>
+<span style="color: #cccccc">}</span>
+</pre></div>
 
-func worker(in, out chan int) {
-	for {
-		task := <-in
-		// heavy computation here
-		out <- task + 1
-	}
-}
-</code></pre><pre style="width: 55%; float: right; padding: 5px"><code class="golang">func generate(in chan int) {
-	for i := 0; i < 100; i++ {
-		in <- i
-	}
-}
+</pre>
+    <pre style="width: 55%; float: right; padding: 5px"><!-- HTML generated using hilite.me --><div style="background: #000000; overflow:auto;width:auto;border: none; border-width: 0px; padding: 0em; background: #111;"><pre style="margin: 0; line-height: 125%"><span style="color: #00cd00">func</span> <span style="color: #cccccc">Generate(ch</span> <span style="color: #00cd00">chan</span><span style="color: #3399cc">&lt;-</span> <span style="color: #00cd00">int</span><span style="color: #cccccc">)</span> <span style="color: #cccccc">{</span>
+	<span style="color: #cdcd00">for</span> <span style="color: #cccccc">i</span> <span style="color: #3399cc">:=</span> <span style="color: #cd00cd">2</span><span style="color: #cccccc">;</span> <span style="color: #cccccc">;</span> <span style="color: #cccccc">i</span><span style="color: #3399cc">++</span> <span style="color: #cccccc">{</span>
+		<span style="color: #cccccc">ch</span> <span style="color: #3399cc">&lt;-</span> <span style="color: #cccccc">i</span>
+	<span style="color: #cccccc">}</span>
+<span style="color: #cccccc">}</span>
 
-func print(out chan int) {
-	for i := 0; i < 100; i++ {
-		fmt.Println(<-out)
-	}
-}
+<span style="color: #00cd00">func</span> <span style="color: #cccccc">Filter(in,</span> <span style="color: #cccccc">out</span> <span style="color: #3399cc">&lt;-</span><span style="color: #00cd00">chan</span> <span style="color: #00cd00">int</span><span style="color: #cccccc">,</span> <span style="color: #cccccc">prime</span> <span style="color: #00cd00">int</span><span style="color: #cccccc">)</span> <span style="color: #cccccc">{</span>
+	<span style="color: #cdcd00">for</span> <span style="color: #cccccc">{</span>
+		<span style="color: #cccccc">i</span> <span style="color: #3399cc">:=</span> <span style="color: #3399cc">&lt;-</span><span style="color: #cccccc">in</span>
+		<span style="color: #cdcd00">if</span> <span style="color: #cccccc">i</span><span style="color: #3399cc">%</span><span style="color: #cccccc">prime</span> <span style="color: #3399cc">!=</span> <span style="color: #cd00cd">0</span> <span style="color: #cccccc">{</span>
+			<span style="color: #cccccc">out</span> <span style="color: #3399cc">&lt;-</span> <span style="color: #cccccc">i</span>
+		<span style="color: #cccccc">}</span>
+	<span style="color: #cccccc">}</span>
+<span style="color: #cccccc">}</span>
+</pre></div>
 
-func main() {
-	runtime.GOMAXPROCS(1)
-
-	in := make(chan int)
-	out := make(chan int)
-	go pool(in, out)
-	go generate(in)
-	go print(out)
-
-	time.Sleep(1 * time.Second)
-}
-</code></pre></section><section><canvas data-sample="gomaxprocs1" style="display:inline"></canvas></section><section><canvas data-sample="gomaxprocs24" style="display:inline"></canvas></section><section><h3>Goroutines leak</h3></section><section><canvas data-sample="leakage" style="display:inline"></canvas></section><section><h3>Go Concurrency Tracer</h3><ul><li>Modify source AST</li><li>Run and analyze trace</li><li>Render w/ WebGL via Three.js</li></ul></section><section><h3>Go Concurrency Tracer</h3><h5>It turns this:</h5><pre><code class="golang">package main
-
-func main() {
-	ch := make(chan int)
-
-	go func() {
-		ch <- 42
-	}()
-
-	<-ch
-}
-</code></pre></section><section><h3>Go Concurrency Tracer</h3><h5>Into this:</h5><pre><code class="golang">...
-func main() {
-	_encode(_cmd{Name: getGID("main"), Command: "create goroutine"})
-	defer _encode(_cmd{Name: getGID("main"), Command: "stop goroutine"})
-	ch := make(chan int)
-	go func() {
-		_encode(_cmd{Parent: "main", Name: getGID("go"), Command: "create goroutine"})
-		defer _encode(_cmd{Name: getGID("go"), Command: "stop goroutine"})
-		_encode(_cmd{From: getGID("go"), Channel: "ch", Value: 42, Command: "start send"})
-		ch <- 42
-	}()
-	_encode(_cmd{To: getGID("main"), Channel: "ch", Value: <-ch, Command: "start recv"})
-
-}
-
-func _encode(v _cmd) {
-	var out []byte
-	v.Time = time.Now().UnixNano()
-	out, _ = json.Marshal(v)
-	fmt.Fprintln(os.Stdout, "TRACE:", string(out))
-}
-...
-</code></pre></section><section><h3>Go Concurrency Tracer</h3><h5>Next, analyze raw trace:</h5><pre><code class="js">{"t":1453171532768286484,"cmd":"create goroutine","name":"worker #27","parent":"pool #5"}
-{"t":1453171532768328577,"cmd":"create goroutine","name":"worker #26","parent":"pool #5"}
-{"t":1453171532768432492,"cmd":"create goroutine","name":"worker #29","parent":"pool #5"}
-{"t":1453171532768435406,"cmd":"create goroutine","name":"worker #28","parent":"pool #5"}
-{"t":1453171532768596996,"cmd":"create goroutine","name":"worker #20","parent":"pool #5"}
-{"t":1453171532868018479,"cmd":"create goroutine","name":"print #32","parent":"main"}
-{"t":1453171532868131248,"cmd":"create goroutine","name":"generate #31","parent":"main"}
-{"t":1453171532879915073,"cmd":"start send","from":"generate #31","ch":"in","value":0}
-{"t":1453171532880021908,"cmd":"start recv","to":"worker #30","ch":"in","value":0}
-{"t":1453171532892937700,"cmd":"start send","from":"generate #31","ch":"in","value":1}
-{"t":1453171532893072787,"cmd":"start recv","to":"worker #16","ch":"in","value":1}
-{"t":1453171532904954369,"cmd":"start send","from":"generate #31","ch":"in","value":2}
-{"t":1453171532905077725,"cmd":"start recv","to":"worker #17","ch":"in","value":2}
-{"t":1453171532916999950,"cmd":"start send","from":"generate #31","ch":"in","value":3}
-{"t":1453171532917084835,"cmd":"start recv","to":"worker #7","ch":"in","value":3}
-{"t":1453171532929056797,"cmd":"start send","from":"generate #31","ch":"in","value":4}
-{"t":1453171532929221817,"cmd":"start recv","to":"worker #18","ch":"in","value":4}
-{"t":1453171532941104211,"cmd":"start send","from":"generate #31","ch":"in","value":5}
-{"t":1453171532941265219,"cmd":"start recv","to":"worker #8","ch":"in","value":5}
-{"t":1453171532952977981,"cmd":"start send","from":"generate #31","ch":"in","value":6}
-</code></pre></section><section><h3>Sample usage</h3><h5><a href="http://nathanleclaire.com/blog/2014/04/05/implementing-a-concurrent-floodfill-with-golang/" target="_blank">Implementing a Concurrent Floodfill with Golang</a></h5><img src="images/floodfill.png"/></section><section><h3>Sample usage</h3><img src="images/sshot2.png"/></section><section><h3>Sample usage</h3><img src="images/sshot1.png"/></section><section><canvas data-sample="floodfill" style="display:inline"></canvas></section><section><h3>TODO</h3><ul><li>Make it work with any Go program</li><li>Vizualize using Oculus Rift</li></ul></section><section><h3>Concurrency vs Parallelism</h3><ul><li>What is parallelism?</li><li>What is concurrency?</li><li>Let's see now...</li></ul></section><section><canvas data-sample="parallelism01" style="display:inline"></canvas></section><section><canvas data-sample="parallelism02" style="display:inline"></canvas></section><section><canvas data-sample="primesieve" style="display:inline"></canvas></section><section><canvas data-sample="pingpong100" style="display:inline"></canvas></section><section><canvas data-sample="server02" style="display:inline"></canvas></section><section><canvas data-sample="workers01" style="display:inline"></canvas></section><section><canvas data-sample="workers02" style="display:inline"></canvas></section><section><h3>Links</h3><ul><li><a href="http://talks.golang.org/2012/concurrency.slide" target="_blank">http://talks.golang.org/2012/concurrency.slide</a></li><li><a href="http://talks.golang.org/2012/waza.slide" target="_blank">http://talks.golang.org/2012/waza.slide</a></li><li> <a href="https://talks.golang.org/2013/advconc.slide" target="_blank">https://talks.golang.org/2013/advconc.slide</a></li></ul></section><section><br/><br/><br/><br/><br/><h1>Thank you</h1></section></div>
+</pre>
+  </section>
+    <section>
+      <h3>Concurrent prime sieve</h3>
+      <canvas data-sample="primesieve" style="display:inline"></canvas>
+    </section>
+  <section>
+    <h3>GOMAXPROCS</h3><img src="images/gomaxprocs.png"/>
+  </section>
+    <section>
+      <h3>GOMAXPROCS = 1</h3>
+      <canvas data-sample="gomaxprocs1" style="display:inline"></canvas>
+    </section>
+    <section>
+      <h3>GOMAXPROCS = 24</h3>
+      <canvas data-sample="gomaxprocs24" style="display:inline"></canvas>
+    </section>
+  <section><br/><br/><br/>
+    <h3>Goroutines leak</h3>
+  </section>
+    <section>
+      <h3>Goroutines leak</h3>
+      <canvas data-sample="leakage" style="display:inline"></canvas>
+    </section>
+  <section><br/><br/><br/>
+    <h3>Go Concurrency Tracer</h3>
+    <ul>
+      <li>Uses go execution tracer (go tool trace)</li>
+      <li>Rewrites your code and runs it</li>
+      <li>Collect the trace</li>
+      <li>Analyze and correlate events</li>
+      <li>Start web-server serving WebGL visualization</li>
+    </ul>
+  </section>
+  <section><br/><br/><br/>
+    <h3>Go Concurrency Tracer</h3>
+    <ul>
+      <li>Will be open-sourced today</li>
+      <li><a href="https://github.com/divan/gotrace" target="_blank">github.com/divan/gotrace</a></li>
+      <li>Requires patched Go (or pre-made docker images)</li>
+    </ul>
+  </section>
+  <section><br/>
+    <h3>Rob Pike - Concurrency is not parallelism</h3><br/><a href="https://www.youtube.com/watch?v=cN_DpYBzKso" target="_blank"><img src="images/video.png" width="70%"/></a>
+  </section>
+  <section><br/><br/><br/>
+    <h3>Concurrency vs Parallelism</h3>
+    <ul>
+      <li>What is parallelism?</li>
+      <li>What is concurrency?</li>
+      <li>Let's visualize it.</li>
+    </ul>
+  </section>
+    <section>
+      <h3>That is parallelism</h3>
+      <canvas data-sample="parallelism00" style="display:inline"></canvas>
+    </section>
+    <section>
+      <h3>That is parallelism</h3>
+      <canvas data-sample="parallelism01" style="display:inline"></canvas>
+    </section>
+    <section>
+      <h3>That is parallelism</h3>
+      <canvas data-sample="parallelism02" style="display:inline"></canvas>
+    </section>
+    <section>
+      <h3>And that is concurrency</h3>
+      <canvas data-sample="primesieve" style="display:inline"></canvas>
+    </section>
+    <section>
+      <h3>That is concurrency</h3>
+      <canvas data-sample="pingpong36" style="display:inline"></canvas>
+    </section>
+    <section>
+      <h3>That is concurrency</h3>
+      <canvas data-sample="server03" style="display:inline"></canvas>
+    </section>
+    <section>
+      <h3>That is concurrency</h3>
+      <canvas data-sample="workers01" style="display:inline"></canvas>
+    </section>
+    <section>
+      <h3>That is concurrency</h3>
+      <canvas data-sample="workers02" style="display:inline"></canvas>
+    </section>
+  <section><br/><br/><br/><br/><br/>
+    <h1>Thank you</h1>
+  </section>
+</div>

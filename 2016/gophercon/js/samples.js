@@ -57,9 +57,8 @@
   head.js(
     "js/samples/hello01.js",
     "js/samples/pingpong01.js",
-    "js/samples/pingpong01_full.js",
     "js/samples/pingpong03.js",
-    "js/samples/pingpong100.js",
+    "js/samples/pingpong36.js",
     "js/samples/primesieve.js",
     "js/samples/timer01.js",
     "js/samples/server01.js",
@@ -70,6 +69,7 @@
     "js/samples/gomaxprocs1.js",
     "js/samples/gomaxprocs24.js",
     "js/samples/floodfill.js",
+    "js/samples/parallelism00.js",
     "js/samples/parallelism01.js",
     "js/samples/parallelism02.js",
     "js/samples/leakage.js",

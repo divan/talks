@@ -50,14 +50,15 @@ GoThree.Trace = function() {
 	var _colors = _colors3;
 
 	// Predefined materials
+	var _baseWidth = 4;
 	var _mats = {
 		"go_normal": new THREE.LineBasicMaterial( { color: _colors["go_normal"], linewidth: 5 } ),
-		"go_sleep": new THREE.LineBasicMaterial( { color: _colors["go_sleep"], linewidth: 2 } ),
-		"go_blocked": new THREE.LineBasicMaterial( { color: _colors["go_blocked"], linewidth: 2 } ),
+		"go_sleep": new THREE.LineBasicMaterial( { color: _colors["go_sleep"], linewidth: _baseWidth } ),
+		"go_blocked": new THREE.LineBasicMaterial( { color: _colors["go_blocked"], linewidth: _baseWidth } ),
 		"go_link": new THREE.LineBasicMaterial( { color: _colors["go_link"], linewidth: 1, } ),
 		"go_cap": new THREE.MeshBasicMaterial({color: _colors["go_cap"]}),
 		"send_value": new THREE.MeshBasicMaterial({color: _colors["send_value"]}),
-		"send_arrow": new THREE.LineBasicMaterial({color: _colors["send_arrow"]}),
+		"send_arrow": new THREE.LineBasicMaterial({color: _colors["send_arrow"], linewidth: _baseWidth-1}),
 		"channel": new THREE.MeshBasicMaterial( {color: _colors["channel"]} ),
 	};
 
@@ -85,7 +86,7 @@ GoThree.Trace = function() {
 	// _gocaps holds text objects for Gorotuines caps.
 	var _gocaps = [];
 
-	// _traces represents info&objects for trances of inter-channel sends
+	// _traces represents info&objects for traces of inter-channel sends
 	var _traces = [];
 
 	// _cam_position holds current camera/controls positions.
@@ -240,7 +241,7 @@ GoThree.Trace = function() {
 		}
 
 		// create cap text
-		var shapes = THREE.FontUtils.generateShapes(this._goroutine_name(name), { font: "helvetiker", weight: "normal", size: 3*_scale } );
+		var shapes = THREE.FontUtils.generateShapes(this._goroutine_name(name), { font: "helvetiker", weight: "normal", size: 2*_scale } );
 		var geom = new THREE.ShapeGeometry( shapes );
 		var text = new THREE.Mesh( geom, _mats["go_cap"] );
 		text.position.x = x;
@@ -307,7 +308,6 @@ GoThree.Trace = function() {
 		trace.text.position.y = c.y;
 		trace.text.position.z = c.z;
 		trace.text.lookAt( _cam_position );
-		_scene.add(trace.text);
 
 		_traces.push(trace);
 
@@ -320,8 +320,9 @@ GoThree.Trace = function() {
 		}).onComplete(function(){
 			var direction = new THREE.Vector3().subVectors(targetV, head);
 			var len = direction.length();
-			var arrow = new THREE.ArrowHelper(direction.clone().normalize(), head, len, _colors["send_arrow"], 1, 1);
+			var arrow = new THREE.ArrowHelper(direction.clone().normalize(), head, len, _colors["send_arrow"], 2, 1);
 			_scene.add( arrow ); 
+			_scene.add(trace.text);
 		});
 
 		tween.start();
@@ -435,7 +436,10 @@ GoThree.Trace = function() {
 		if (g === undefined) return;
 		if (g.parent !== undefined) {
 			var parent = _goroutines.find({name: g.parent});
-			if (parent === undefined) return;
+			if (parent === undefined) {
+				_goroutines.remove({name: name});
+				return;
+			}
 			var ggeom = g.line.geometry.vertices[1];
 			var pgeom = parent.line.geometry.vertices[1];
 			var start = new THREE.Vector3(ggeom.x, ggeom.y, ggeom.z);
@@ -508,7 +512,7 @@ GoThree.Trace = function() {
 	};
 
 	_widths = {
-		"default": [2, 2, 2, 2, 2],
+		"default": [_baseWidth, _baseWidth, _baseWidth, 1, _baseWidth-1],
 		"mode1": [10, 1, 1, 1, 1],
 		"mode2": [1, 10, 1, 1, 1],
 		"mode3": [1, 1, 10, 1, 1],

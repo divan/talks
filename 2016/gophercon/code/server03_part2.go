@@ -17,7 +17,6 @@ func pool(ch chan string, n int) {
 	}
 	go parse(results)
 	for {
-		addr := <-ch
-		wch <- 42*len(addr)
+		wch <- <-ch
 	}
 }
